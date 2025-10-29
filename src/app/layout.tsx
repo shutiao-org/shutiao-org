@@ -1,9 +1,11 @@
 import "@/styles/globals.css";
+import "@ant-design/v5-patch-for-react-19";
 
+import { AntdWrapper } from "@/app/components/antd-wrapper";
+import { TRPCReactProvider } from "@/trpc/react";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-
-import { TRPCReactProvider } from "@/trpc/react";
 
 export const metadata: Metadata = {
 	title: "Create T3 App",
@@ -22,7 +24,11 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={`${geist.variable}`}>
 			<body>
-				<TRPCReactProvider>{children}</TRPCReactProvider>
+				<TRPCReactProvider>
+					<AntdRegistry>
+						<AntdWrapper>{children}</AntdWrapper>
+					</AntdRegistry>
+				</TRPCReactProvider>
 			</body>
 		</html>
 	);
