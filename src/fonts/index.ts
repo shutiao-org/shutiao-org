@@ -1,4 +1,4 @@
-import { Monoton as FontLogo, Geist } from 'next/font/google'
+import { Courgette as FontLogo, Geist } from 'next/font/google'
 
 export const geist = Geist({
   subsets: ['latin'],
