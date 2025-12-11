@@ -1,5 +1,6 @@
 'use client'
 
+import '@/styles/view-transition.css'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { cn } from '@/lib/utils'
