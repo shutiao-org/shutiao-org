@@ -1,10 +1,10 @@
 import '@/styles/globals.css'
 
-import { AntdRegistry } from '@ant-design/nextjs-registry'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import NextTopLoader from 'nextjs-toploader'
 import { AntdWrapper } from '@/components/antd-wrapper'
 import { Analytics } from '@/components/common/analytics'
 import { ThemeProvider } from '@/components/theme/provider'
@@ -51,12 +51,11 @@ export default async function RootLayout({ children, params }: Props) {
         >
           <NextIntlClientProvider>
             <TRPCReactProvider>
-              <AntdRegistry>
-                <AntdWrapper>
-                  {children}
-                  <Analytics />
-                </AntdWrapper>
-              </AntdRegistry>
+              <AntdWrapper>
+                {children}
+                <NextTopLoader />
+                <Analytics />
+              </AntdWrapper>
             </TRPCReactProvider>
           </NextIntlClientProvider>
         </ThemeProvider>

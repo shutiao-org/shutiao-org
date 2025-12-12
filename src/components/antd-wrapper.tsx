@@ -1,5 +1,6 @@
 'use client'
 
+import { AntdRegistry } from '@ant-design/nextjs-registry'
 import { theme as antdTheme, ConfigProvider } from 'antd'
 import enUS from 'antd/es/locale/en_US'
 import zhCN from 'antd/es/locale/zh_CN'
@@ -15,16 +16,18 @@ export function AntdWrapper({ children }: { children: React.ReactNode }) {
   if (!mounted) return null
 
   return (
-    <ConfigProvider
-      locale={locale === 'zh' ? zhCN : enUS}
-      theme={{
-        algorithm:
-          resolvedTheme === 'dark'
-            ? antdTheme.darkAlgorithm
-            : antdTheme.defaultAlgorithm,
-      }}
-    >
-      {children}
-    </ConfigProvider>
+    <AntdRegistry>
+      <ConfigProvider
+        locale={locale === 'zh' ? zhCN : enUS}
+        theme={{
+          algorithm:
+            resolvedTheme === 'dark'
+              ? antdTheme.darkAlgorithm
+              : antdTheme.defaultAlgorithm,
+        }}
+      >
+        {children}
+      </ConfigProvider>
+    </AntdRegistry>
   )
 }
