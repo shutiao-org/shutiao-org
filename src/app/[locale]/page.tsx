@@ -7,9 +7,9 @@ export default async function HomePage() {
   return (
     <div className='flex min-h-screen flex-col items-center'>
       <Header />
-      <div className='flex flex-1 flex-col items-center justify-center gap-50'>
+      <div className='mt-30 flex flex-1 flex-col items-center justify-center'>
         <Hero />
-        <SocialMedia className='md:scale-200' />
+        <SocialMedia className='mt-20 md:scale-200' />
       </div>
       <Footer />
     </div>

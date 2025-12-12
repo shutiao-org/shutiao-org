@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { Logo } from '@/components/common/logo'
 import { SocialMedia } from '@/components/common/social-media'
+import { Friends } from '@/components/home/friends'
 import { LanguageToggle } from '@/components/language/toggle'
 import { socialLinks } from '@/config'
 
@@ -95,7 +96,11 @@ export function Footer() {
         ))}
       </div>
 
-      <div className='mt-24 flex flex-col justify-between gap-4 border-t pt-8 font-medium text-muted-foreground text-sm md:flex-row md:items-center'>
+      <div className='my-10'>
+        <Friends />
+      </div>
+
+      <div className='flex flex-col justify-between gap-4 border-t pt-8 font-medium text-muted-foreground text-sm md:flex-row md:items-center'>
         <p>{t('copyright')}</p>
         <ul className='flex items-center gap-5'>
           {bottomLinks.map((link, linkIdx) => (
