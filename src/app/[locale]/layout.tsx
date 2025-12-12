@@ -5,8 +5,8 @@ import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import NextTopLoader from 'nextjs-toploader'
-import { AntdWrapper } from '@/components/antd-wrapper'
 import { Analytics } from '@/components/common/analytics'
+import { AntdWrapper } from '@/components/others/antd-wrapper'
 import { ThemeProvider } from '@/components/theme/provider'
 import { geist } from '@/fonts'
 import { routing } from '@/i18n/routing'
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t('title'),
     description: t('description'),
-    icons: [{ rel: 'icon', url: '/favicon.ico' }],
+    icons: [{ rel: 'icon', url: '/favicon.png' }],
   }
 }
 

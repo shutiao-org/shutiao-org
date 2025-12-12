@@ -6,6 +6,13 @@
   "common": {
     "title": "你好，世界"
   },
+  "nav": {
+    "home": "首页",
+    "event": "活动",
+    "blog": "博客",
+    "about": "关于",
+    "menu": "菜单"
+  },
   "metadata": {
     "title": "整点薯条吧-开发者社群",
     "description": "整点薯条吧-开发者社群，一个专注于开发者交流的社群。"

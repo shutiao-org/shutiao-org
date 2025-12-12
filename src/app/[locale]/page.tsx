@@ -8,7 +8,7 @@ export default async function HomePage() {
     <div className='flex min-h-screen flex-col items-center'>
       <Header />
       <div className='flex flex-1 flex-col items-center justify-center gap-50'>
-        <h1 className='font-bold text-7xl'>{t('title')}</h1>
+        <h1 className='font-bold text-5xl md:text-7xl'>{t('title')}</h1>
         <SocialMedia />
       </div>
     </div>

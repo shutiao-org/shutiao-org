@@ -6,9 +6,16 @@
   "common": {
     "title": "Hello World"
   },
+  "nav": {
+    "home": "Home",
+    "event": "Event",
+    "blog": "Blog",
+    "about": "About",
+    "menu": "Menu"
+  },
   "metadata": {
-    "title": "Shutiao Bar - Developer Community",
-    "description": "Shutiao Bar - Developer Community, a community focused on developer communication."
+    "title": "Fries Bar - Developer Community",
+    "description": "Fries Bar - Developer Community, a community focused on developer communication."
   },
   "auth": {
     "sign-in": "Sign in",

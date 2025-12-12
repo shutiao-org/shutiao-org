@@ -6,7 +6,7 @@ import { socialLinks } from '@/config'
 
 export function SocialMedia() {
   return (
-    <div className='flex scale-200 items-center gap-5'>
+    <div className='flex items-center gap-5 md:scale-200'>
       <Link
         href={socialLinks.podcast}
         data-umami-event='homepage:header:podcast'
