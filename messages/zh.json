@@ -56,6 +56,19 @@
     "mobile-app": "移动应用",
     "current-session": "当前会话"
   },
+  "communities": {
+    "title": "我们的社区",
+    "subtitle": "连接全球数字游民，在最适合生活的城市建立据点",
+    "visit": "访问网站",
+    "dali": {
+      "name": "大理",
+      "description": "探索大理数字游民社区"
+    },
+    "chiangmai": {
+      "name": "清迈",
+      "description": "发现清迈旅居生活"
+    }
+  },
   "footer": {
     "description": "整点薯条吧是一个开发者社区。",
     "social": "社交媒体",

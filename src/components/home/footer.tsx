@@ -96,11 +96,11 @@ export function Footer() {
         ))}
       </div>
 
-      <div className='my-10'>
+      <div className='my-10 border-border border-y py-10'>
         <Friends />
       </div>
 
-      <div className='flex flex-col justify-between gap-4 border-t pt-8 font-medium text-muted-foreground text-sm md:flex-row md:items-center'>
+      <div className='flex flex-col justify-between gap-4 font-medium text-muted-foreground text-sm md:flex-row md:items-center'>
         <p>{t('copyright')}</p>
         <ul className='flex items-center gap-5'>
           {bottomLinks.map((link, linkIdx) => (

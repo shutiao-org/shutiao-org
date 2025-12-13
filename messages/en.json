@@ -56,6 +56,19 @@
     "mobile-app": "Mobile app",
     "current-session": "Current session"
   },
+  "communities": {
+    "title": "Our Communities",
+    "subtitle": "Connecting global digital nomads, establishing bases in the most livable cities",
+    "visit": "Visit Website",
+    "dali": {
+      "name": "Dali",
+      "description": "Explore the Dali Digital Nomad Community"
+    },
+    "chiangmai": {
+      "name": "Chiang Mai",
+      "description": "Discover Chiang Mai Living"
+    }
+  },
   "footer": {
     "description": "Fries Bar is a community for developers.",
     "social": "Social",
