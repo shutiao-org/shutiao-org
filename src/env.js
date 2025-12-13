@@ -19,6 +19,7 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_UMAMI_ANALYTICS_ID: z.string().optional(),
     NEXT_PUBLIC_UMAMI_ANALYTICS_JS: z.string().optional(),
+    NEXT_PUBLIC_MICROSOFT_CLARITY_ID: z.string().optional(),
   },
 
   /**
@@ -30,6 +31,8 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     NEXT_PUBLIC_UMAMI_ANALYTICS_ID: process.env.NEXT_PUBLIC_UMAMI_ANALYTICS_ID,
     NEXT_PUBLIC_UMAMI_ANALYTICS_JS: process.env.NEXT_PUBLIC_UMAMI_ANALYTICS_JS,
+    NEXT_PUBLIC_MICROSOFT_CLARITY_ID:
+      process.env.NEXT_PUBLIC_MICROSOFT_CLARITY_ID,
   },
 
   /**

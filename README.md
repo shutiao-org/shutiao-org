@@ -55,7 +55,7 @@
 
 ## ⭐️ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=shutiaoorg/shutiao-web&type=Date)](https://github.com/shutiaoorg/shutiao-web)
+[![Star History Chart](https://api.star-history.com/svg?repos=shutiaoorg/shutiao-org&type=Date)](https://github.com/shutiaoorg/shutiao-org)
 
 
 ## 🪪 License
