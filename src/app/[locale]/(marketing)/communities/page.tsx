@@ -26,9 +26,7 @@ export default function CommunitiesPage() {
   return (
     <section className='z-10 flex w-full flex-1 flex-col items-center justify-center gap-20 px-4 py-16 md:px-8 md:py-20'>
       <div className='max-w-3xl space-y-6 text-center'>
-        <h1 className='bg-linear-to-b from-neutral-200 to-neutral-600 bg-clip-text font-bold text-4xl text-transparent md:text-6xl dark:from-neutral-50 dark:to-neutral-400'>
-          {t('title')}
-        </h1>
+        <h1 className='hero-gradient-heading'>{t('title')}</h1>
         <p className='mx-auto text-lg text-neutral-500 md:text-xl'>
           {t('subtitle')}
         </p>

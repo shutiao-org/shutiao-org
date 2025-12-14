@@ -16,9 +16,7 @@ export default function Home() {
   return (
     <div className='mx-auto mb-5 max-w-[85rem] px-4 py-10 sm:px-6 lg:mb-10 lg:px-8 lg:py-14'>
       <div className='mx-auto mb-10 max-w-3xl space-y-6 text-center lg:mb-14'>
-        <h1 className='bg-linear-to-b from-neutral-200 to-neutral-600 bg-clip-text font-bold text-4xl text-transparent md:text-6xl dark:from-neutral-50 dark:to-neutral-400'>
-          {t('title')}
-        </h1>
+        <h1 className='hero-gradient-heading'>{t('title')}</h1>
         <p className='mx-auto text-lg text-neutral-500 md:text-xl'>
           {t('subtitle')}
         </p>

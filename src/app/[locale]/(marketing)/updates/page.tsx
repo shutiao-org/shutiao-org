@@ -178,9 +178,7 @@ export default function UpdatesPage() {
   return (
     <div className='flex w-full flex-col items-center justify-center pt-20 pb-10'>
       <div className='max-w-3xl space-y-6 text-center'>
-        <h1 className='bg-linear-to-b from-neutral-200 to-neutral-600 bg-clip-text font-bold text-4xl text-transparent md:text-6xl dark:from-neutral-50 dark:to-neutral-400'>
-          {t('title')}
-        </h1>
+        <h1 className='hero-gradient-heading'>{t('title')}</h1>
         <p className='mx-auto text-lg text-neutral-500 md:text-xl'>
           {t('subtitle')}
         </p>
