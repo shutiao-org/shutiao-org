@@ -168,19 +168,27 @@ export function NavMobile() {
             </Link>
 
             <Link
-              href='/event'
+              href='/events'
               data-umami-event='nav-mobile:event'
               className='flex items-center px-6 py-4 text-lg transition-colors hover:bg-muted/50'
             >
-              {t('event')}
+              {t('events')}
             </Link>
 
             <Link
-              href='/blog'
+              href='/communities'
+              data-umami-event='nav-mobile:products'
+              className='flex items-center px-6 py-4 text-lg transition-colors hover:bg-muted/50'
+            >
+              {t('communities')}
+            </Link>
+
+            <Link
+              href='/blogs'
               data-umami-event='nav-mobile:blogs'
               className='flex items-center px-6 py-4 text-lg transition-colors hover:bg-muted/50'
             >
-              {t('blog')}
+              {t('blogs')}
             </Link>
 
             <Link

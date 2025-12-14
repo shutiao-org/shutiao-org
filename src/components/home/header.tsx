@@ -11,7 +11,7 @@ export function Header() {
     <>
       <header
         className={cn(
-          'fixed top-0 right-0 left-0 z-50 mx-auto flex h-20 w-full max-w-7xl items-center px-4',
+          'sticky top-0 right-0 left-0 z-50 mx-auto flex h-20 w-full max-w-7xl items-center px-4',
           'bg-white/80 backdrop-blur-md dark:bg-transparent dark:backdrop-blur-xs',
         )}
       >

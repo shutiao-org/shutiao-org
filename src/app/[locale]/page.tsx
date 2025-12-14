@@ -1,3 +1,4 @@
+import { NoiseBg } from '@/components/common/noise-bg'
 import { SocialMedia } from '@/components/common/social-media'
 import { Footer } from '@/components/home/footer'
 import { Header } from '@/components/home/header'
@@ -12,6 +13,7 @@ export default async function HomePage() {
         <SocialMedia className='mt-20 md:scale-200' />
       </div>
       <Footer />
+      <NoiseBg />
     </div>
   )
 }
