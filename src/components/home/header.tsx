@@ -12,7 +12,7 @@ export function Header() {
       <header
         className={cn(
           'sticky top-0 right-0 left-0 z-50 mx-auto flex h-20 w-full max-w-7xl items-center px-4',
-          'bg-white/80 backdrop-blur-md dark:bg-transparent dark:backdrop-blur-xs',
+          'rounded-full bg-white/80 backdrop-blur-md dark:bg-transparent dark:backdrop-blur-xs',
         )}
       >
         <Link
@@ -27,13 +27,14 @@ export function Header() {
         </div>
 
         <div className='flex flex-1 items-center justify-end gap-5'>
-          <div className='hidden md:block'>
+          <div className='hidden items-center md:flex'>
             <ThemeToggle data-umami-event='header:theme-toggle' />
           </div>
 
           <Link
             href={SIGN_IN_PAGE}
             data-umami-event='header:login'
+            className='flex items-center'
           >
             <ShinyButton>Login</ShinyButton>
           </Link>
