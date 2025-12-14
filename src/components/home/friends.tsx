@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import lusun from '@/assets/images/png/lusun.png'
-import zaowu from '@/assets/images/png/zaowu.png'
 import Chuhaiqu from '@/assets/images/svg/chuhaiqu.svg'
 import Juchats from '@/assets/images/svg/juchats.svg'
 // import NetworkedOS from '@/assets/images/svg/juchats.svg'
@@ -12,6 +11,7 @@ import Podwise2 from '@/assets/images/svg/podwise-2.svg'
 import SocialLayer from '@/assets/images/svg/social-layer.min.svg'
 import WaytoAGI from '@/assets/images/svg/waytoagi.min.svg'
 import Youmind from '@/assets/images/svg/youmind.svg'
+import ZaoWuJuZhen from '@/assets/images/svg/zwjz-light-theme.svg'
 
 export function Friends() {
   return (
@@ -57,12 +57,7 @@ export function Friends() {
         data-umami-event='friends:zaowu'
         className='flex items-center gap-2 rounded-md bg-white p-1'
       >
-        <Image
-          src={zaowu}
-          alt='zaowu'
-          width={50}
-          height={50}
-        />
+        <ZaoWuJuZhen className='h-10' />
       </Link>
 
       <Link
