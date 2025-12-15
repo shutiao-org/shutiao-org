@@ -81,7 +81,7 @@ export function Friends() {
       </Link>
 
       <Link
-        href='https://tcq.lusun.com?ref=shutiao.org'
+        href='https://tcq.lusun.com/i/?icode=1093712'
         target='_blank'
         data-umami-event='friends:lusun'
         className='flex items-center gap-2'
