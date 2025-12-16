@@ -22,7 +22,7 @@ import { cn } from '@/lib/utils'
 const NAV_ITEMS = [
   { href: '/', label: 'home' },
   { href: '/products', label: 'products' },
-  { href: '/events', label: 'events', event: 'event' },
+  { href: '/events', label: 'events' },
   { href: '/communities', label: 'communities' },
   { href: '/blogs', label: 'blogs' },
   { href: '/about', label: 'about' },
@@ -45,7 +45,7 @@ export function Nav() {
             >
               <Link
                 href={item.href}
-                data-umami-event={`nav:${item.event ?? item.label}`}
+                data-umami-event={`nav:${item.label}`}
                 className='opacity-70 transition-all duration-150 hover:opacity-100'
               >
                 {t(item.label)}
@@ -77,7 +77,7 @@ export function NavMobile() {
               <Link
                 key={item.href}
                 href={item.href}
-                data-umami-event={`nav-mobile:${item.event ?? item.label}`}
+                data-umami-event={`nav-mobile:${item.label}`}
                 className='flex items-center px-6 py-4 text-lg transition-colors hover:bg-muted/50'
               >
                 {t(item.label)}

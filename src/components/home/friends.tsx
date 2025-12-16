@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import lusun from '@/assets/images/png/lusun.png'
+import NetworkedOS from '@/assets/images/png/networkedos.png'
 import Chuhaiqu from '@/assets/images/svg/chuhaiqu.svg'
+import CMI from '@/assets/images/svg/cmi.svg'
 import Juchats from '@/assets/images/svg/juchats.svg'
-// import NetworkedOS from '@/assets/images/svg/juchats.svg'
 import Mentorbook from '@/assets/images/svg/mentorbook.svg'
 import Openbuild from '@/assets/images/svg/openbuild.svg'
 import Podwise1 from '@/assets/images/svg/podwise-1.svg'
@@ -43,14 +44,6 @@ export function Friends() {
         <SocialLayer className='h-10' />
       </Link>
 
-      {/* <Link
-        href='https://www.networkedos.com'
-        target='_blank'
-        data-umami-event='friends:networkedos'
-      >
-        <NetworkedOS className='h-10' />
-      </Link> */}
-
       <Link
         href='https://zwjz.flowus.cn'
         target='_blank'
@@ -61,6 +54,28 @@ export function Friends() {
         <p className="font-['SimSun','Songti_SC',serif] font-medium text-[1.4rem] tracking-[0.2rem]">
           物矩阵
         </p>
+      </Link>
+
+      {/* <Link
+        href='https://www.networkedos.com?ref=shutiao.org'
+        target='_blank'
+        data-umami-event='friends:networkedos'
+        className='dark:rounded-lg dark:bg-white'
+      >
+        <Image
+          src={NetworkedOS}
+          alt='networkedos'
+          width={140}
+          height={100}
+        />
+      </Link> */}
+
+      <Link
+        href='https://www.chiangmai-inn.com?ref=shutiao.org'
+        target='_blank'
+        data-umami-event='friends:chiangmai-inn'
+      >
+        <CMI className='h-9' />
       </Link>
 
       <Link
