@@ -1,12 +1,16 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
 import lusun from '@/assets/images/png/lusun.png'
-import NetworkedOS from '@/assets/images/png/networkedos.png'
+import NWOS_Dark from '@/assets/images/png/nwos_dark.png'
+import NWOS_Light from '@/assets/images/png/nwos_light.png'
 import Chuhaiqu from '@/assets/images/svg/chuhaiqu.svg'
 import CMI from '@/assets/images/svg/cmi.svg'
 import Juchats from '@/assets/images/svg/juchats.svg'
 import Mentorbook from '@/assets/images/svg/mentorbook.svg'
-import Openbuild from '@/assets/images/svg/openbuild.svg'
+import OpenBuild from '@/assets/images/svg/openbuild.svg'
 import Podwise1 from '@/assets/images/svg/podwise-1.svg'
 import Podwise2 from '@/assets/images/svg/podwise-2.svg'
 import SocialLayer from '@/assets/images/svg/social-layer.svg'
@@ -15,6 +19,7 @@ import Youmind from '@/assets/images/svg/youmind.svg'
 import ZWJZ from '@/assets/images/svg/zwjz.svg'
 
 export function Friends() {
+  const { resolvedTheme } = useTheme()
   return (
     <div className='flex flex-wrap items-center gap-x-10 gap-y-6'>
       <Link
@@ -56,19 +61,27 @@ export function Friends() {
         </p>
       </Link>
 
-      {/* <Link
+      <Link
+        href='https://openbuild.xyz?ref=shutiao.org'
+        target='_blank'
+        data-umami-event='friends:openbuild'
+        className='scale-80'
+      >
+        <OpenBuild className='h-8' />
+      </Link>
+
+      <Link
         href='https://www.networkedos.com?ref=shutiao.org'
         target='_blank'
         data-umami-event='friends:networkedos'
-        className='dark:rounded-lg dark:bg-white'
       >
         <Image
-          src={NetworkedOS}
+          src={resolvedTheme === 'dark' ? NWOS_Light : NWOS_Dark}
           alt='networkedos'
           width={140}
           height={100}
         />
-      </Link> */}
+      </Link>
 
       <Link
         href='https://www.chiangmai-inn.com?ref=shutiao.org'
@@ -76,15 +89,6 @@ export function Friends() {
         data-umami-event='friends:chiangmai-inn'
       >
         <CMI className='h-9' />
-      </Link>
-
-      <Link
-        href='https://openbuild.xyz?ref=shutiao.org'
-        target='_blank'
-        data-umami-event='friends:openbuild'
-        className='scale-80'
-      >
-        <Openbuild className='h-8' />
       </Link>
 
       <Link
