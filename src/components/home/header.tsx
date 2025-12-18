@@ -1,8 +1,10 @@
+import { Github } from 'lucide-react'
 import Link from 'next/link'
 import { Logo } from '@/components/common/logo'
 import { Nav, NavMobile } from '@/components/home/nav'
 import { ThemeToggle } from '@/components/theme/toggle'
 import { ShinyButton } from '@/components/ui/shiny-button'
+import { socialLinks } from '@/config'
 import { cn } from '@/lib/utils'
 import { SIGN_IN_PAGE } from '@/routes'
 
@@ -27,6 +29,16 @@ export function Header() {
         </div>
 
         <div className='flex flex-1 items-center justify-end gap-5'>
+          <div className='hidden items-center md:flex'>
+            <Link
+              href={socialLinks.github}
+              target='_blank'
+              data-umami-event='header:github-repo'
+            >
+              <Github className='size-6 cursor-pointer' />
+            </Link>
+          </div>
+
           <div className='hidden items-center md:flex'>
             <ThemeToggle data-umami-event='header:theme-toggle' />
           </div>
