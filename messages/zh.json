@@ -31,7 +31,8 @@
     "music": "音乐",
     "podcasts": "播客",
     "cycling": "骑行",
-    "photography": "摄影"
+    "photography": "摄影",
+    "knowledge": "知识库"
   },
   "metadata": {
     "title": "整点薯条吧-开发者社区",
@@ -127,7 +128,7 @@
   },
   "updates": {
     "title": "更新日志",
-    "subtitle": "记录我们成长的每一步",
+    "subtitle": "记录「整点薯条吧」成长的每一步",
     "v0_0_2": {
       "title": "社区官网 v0.0.2 发布 🎉",
       "digital_nomads_text": "新增 <link>「数字游民」</link> 社区页面。",
