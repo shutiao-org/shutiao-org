@@ -5,13 +5,17 @@
     "src/i18n/**",
     "src/trpc/**",
     "drizzle.config.ts",
-    "scripts/drizzle-migrate.ts"
+    "scripts/drizzle-migrate.ts",
+    "contentlayer.config.ts "
   ],
   "ignoreDependencies": [
+    "@commitlint/cli",
+    "@tailwindcss/typography",
     "@svgr/webpack",
     "lefthook",
     "tailwindcss",
-    "tw-animate-css"
+    "tw-animate-css",
+    "server-only"
   ],
   "ignoreExportsUsedInFile": true,
   "includeEntryExports": false

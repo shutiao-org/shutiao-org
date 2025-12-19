@@ -1,0 +1,36 @@
+/* Timeline connecting lines */
+.timeline-wrapper > div > div > div:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 31px;
+  top: 40px;
+  width: 1px;
+  height: calc(100% - 20px);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(163, 163, 163, 0.08) 15%,
+    rgba(163, 163, 163, 0.08) 85%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (min-width: 768px) {
+  .timeline-wrapper > div > div > div:not(:last-child)::after {
+    left: 31px;
+    top: 160px;
+    height: calc(100% - 80px);
+  }
+}
+
+.dark .timeline-wrapper > div > div > div:not(:last-child)::after {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(115, 115, 115, 0.12) 15%,
+    rgba(115, 115, 115, 0.12) 85%,
+    transparent 100%
+  );
+}
