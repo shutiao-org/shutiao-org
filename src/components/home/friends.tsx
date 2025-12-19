@@ -3,19 +3,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
-import lusun from '@/assets/images/png/lusun.png'
 import NWOS_Dark from '@/assets/images/png/nwos_dark.png'
 import NWOS_Light from '@/assets/images/png/nwos_light.png'
 import Chuhaiqu from '@/assets/images/svg/chuhaiqu.svg'
 import CMI from '@/assets/images/svg/cmi.svg'
-import Juchats from '@/assets/images/svg/juchats.svg'
-import Mentorbook from '@/assets/images/svg/mentorbook.svg'
 import OpenBuild from '@/assets/images/svg/openbuild.svg'
-import Podwise1 from '@/assets/images/svg/podwise-1.svg'
-import Podwise2 from '@/assets/images/svg/podwise-2.svg'
 import SocialLayer from '@/assets/images/svg/social-layer.svg'
 import WaytoAGI from '@/assets/images/svg/waytoagi.svg'
-import Youmind from '@/assets/images/svg/youmind.svg'
 import ZWJZ from '@/assets/images/svg/zwjz.svg'
 
 export function Friends() {
@@ -89,59 +83,6 @@ export function Friends() {
         data-umami-event='friends:chiangmai-inn'
       >
         <CMI className='h-9' />
-      </Link>
-
-      <Link
-        href='https://youmind.ai?ref=shutiao.org'
-        target='_blank'
-        data-umami-event='friends:youmind'
-      >
-        <Youmind />
-      </Link>
-
-      <Link
-        href='https://tcq.lusun.com/i/?icode=1093712'
-        target='_blank'
-        data-umami-event='friends:lusun'
-        className='flex items-center gap-2'
-      >
-        <Image
-          src={lusun}
-          alt='lusun'
-          width={36}
-          height={36}
-        />
-        <p className='font-medium text-xl'>芦 笋</p>
-      </Link>
-
-      <Link
-        href='https://podwise.ai?ref=shutiao.org'
-        target='_blank'
-        data-umami-event='friends:podwise'
-      >
-        <div className='flex items-center gap-1 text-purple-400'>
-          <Podwise1 className='h-10' />
-          <Podwise2 className='h-5' />
-        </div>
-      </Link>
-
-      <Link
-        href='https://mentorbook.ai?ref=shutiao.org'
-        target='_blank'
-        data-umami-event='friends:mentorbook'
-      >
-        <div className='flex items-center gap-2'>
-          <Mentorbook className='h-6' />
-          <span className='font-medium text-xl'>MentorBook</span>
-        </div>
-      </Link>
-
-      <Link
-        href='https://www.juchats.com?ref=shutiao.org'
-        target='_blank'
-        data-umami-event='friends:juchats'
-      >
-        <Juchats className='h-6' />
       </Link>
     </div>
   )
