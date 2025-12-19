@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "contentlayer2 build && next dev",
     "build": "contentlayer2 build && next build",
     "vercel-build": "contentlayer2 build && next build && drizzle-kit migrate",
     "start": "next start",

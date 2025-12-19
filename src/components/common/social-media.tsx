@@ -2,7 +2,7 @@ import { Github, Mail, MessageCircleMore, Podcast, Youtube } from 'lucide-react'
 import Link from 'next/link'
 import TelegramIcon from '@/assets/images/svg/tg.svg'
 import XIcon from '@/assets/images/svg/x.svg'
-import { socialLinks } from '@/config'
+import { SOCIAL_LINKS } from '@/config'
 import { cn } from '@/lib/utils'
 
 interface SocialMediaProps {
@@ -13,7 +13,7 @@ export function SocialMedia({ className }: SocialMediaProps) {
   return (
     <div className={cn('flex items-center gap-5', className)}>
       <Link
-        href={socialLinks.podcast}
+        href={SOCIAL_LINKS.podcast}
         className='transition-all duration-300 hover:scale-125'
         data-umami-event='social-media:podcast'
       >
@@ -21,7 +21,7 @@ export function SocialMedia({ className }: SocialMediaProps) {
       </Link>
 
       <Link
-        href={socialLinks.x}
+        href={SOCIAL_LINKS.x}
         className='transition-all duration-300 hover:scale-125'
         data-umami-event='social-media:x'
       >
@@ -29,7 +29,7 @@ export function SocialMedia({ className }: SocialMediaProps) {
       </Link>
 
       <Link
-        href={socialLinks.github}
+        href={SOCIAL_LINKS.github}
         className='transition-all duration-300 hover:scale-125'
         data-umami-event='social-media:github'
       >
@@ -37,7 +37,7 @@ export function SocialMedia({ className }: SocialMediaProps) {
       </Link>
 
       <Link
-        href={socialLinks.telegram}
+        href={SOCIAL_LINKS.telegram}
         className='transition-all duration-300 hover:scale-125'
         data-umami-event='social-media:telegram'
       >
@@ -45,7 +45,7 @@ export function SocialMedia({ className }: SocialMediaProps) {
       </Link>
 
       <Link
-        href={socialLinks.youtube}
+        href={SOCIAL_LINKS.youtube}
         className='transition-all duration-300 hover:scale-125'
         data-umami-event='social-media:youtube'
       >
@@ -53,7 +53,7 @@ export function SocialMedia({ className }: SocialMediaProps) {
       </Link>
 
       <Link
-        href={socialLinks.wechat}
+        href={SOCIAL_LINKS.wechat}
         className='transition-all duration-300 hover:scale-125'
         data-umami-event='social-media:wechat'
       >
@@ -61,7 +61,7 @@ export function SocialMedia({ className }: SocialMediaProps) {
       </Link>
 
       <Link
-        href={socialLinks.email}
+        href={SOCIAL_LINKS.email}
         className='transition-all duration-300 hover:scale-125'
         data-umami-event='social-media:email'
       >

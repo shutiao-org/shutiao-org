@@ -4,7 +4,7 @@ import { Logo } from '@/components/common/logo'
 import { Nav, NavMobile } from '@/components/home/nav'
 import { ThemeToggle } from '@/components/theme/toggle'
 import { ShinyButton } from '@/components/ui/shiny-button'
-import { socialLinks } from '@/config'
+import { SOCIAL_LINKS } from '@/config'
 import { cn } from '@/lib/utils'
 import { SIGN_IN_PAGE } from '@/routes'
 
@@ -31,7 +31,7 @@ export function Header() {
         <div className='flex flex-1 items-center justify-end gap-5'>
           <div className='hidden items-center lg:flex'>
             <Link
-              href={socialLinks.github}
+              href={SOCIAL_LINKS.github}
               target='_blank'
               data-umami-event='header:github-repo'
             >

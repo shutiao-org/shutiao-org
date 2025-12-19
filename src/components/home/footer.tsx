@@ -3,7 +3,7 @@ import { Logo } from '@/components/common/logo'
 import { SocialMedia } from '@/components/common/social-media'
 import { Friends } from '@/components/home/friends'
 import { LanguageToggle } from '@/components/language/toggle'
-import { socialLinks } from '@/config'
+import { SOCIAL_LINKS } from '@/config'
 
 export function Footer() {
   const t = useTranslations('footer')
@@ -11,11 +11,11 @@ export function Footer() {
     {
       title: t('social'),
       links: [
-        { text: 'X', url: socialLinks.x },
-        { text: 'GitHub', url: socialLinks.github },
-        { text: 'WeChat', url: socialLinks.wechat },
-        { text: 'Telegram', url: socialLinks.telegram },
-        { text: 'YouTube', url: socialLinks.youtube },
+        { text: 'X', url: SOCIAL_LINKS.x },
+        { text: 'GitHub', url: SOCIAL_LINKS.github },
+        { text: 'WeChat', url: SOCIAL_LINKS.wechat },
+        { text: 'Telegram', url: SOCIAL_LINKS.telegram },
+        { text: 'YouTube', url: SOCIAL_LINKS.youtube },
       ],
     },
     {
@@ -55,7 +55,7 @@ export function Footer() {
         { text: t('terms'), url: '/terms' },
         { text: t('privacy'), url: '/privacy' },
         { text: t('members'), url: 'https://guoqi.dev' },
-        { text: t('contact'), url: socialLinks.email },
+        { text: t('contact'), url: SOCIAL_LINKS.email },
       ],
     },
   ]
