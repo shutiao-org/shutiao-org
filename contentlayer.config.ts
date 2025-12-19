@@ -86,7 +86,7 @@ const Update = defineDocumentType(() => ({
         const localeIndex = pathParts.indexOf('updates')
         return localeIndex >= 0 && localeIndex + 1 < pathParts.length
           ? pathParts[localeIndex + 1]!
-          : 'zh'
+          : 'en'
       },
     },
   },
