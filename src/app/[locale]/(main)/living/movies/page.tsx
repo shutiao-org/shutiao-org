@@ -1,16 +1,27 @@
 import { useTranslations } from 'next-intl'
+import { MovieCard } from '@/components/movies/card'
+import { MOVIES } from '@/config'
 
 export default function MoviesPage() {
   const t = useTranslations('movies')
 
   return (
-    <section className='z-10 flex w-full flex-1 flex-col items-center justify-center gap-20 px-4 py-16 md:px-8 md:py-20'>
-      <div className='max-w-3xl space-y-6 text-center'>
+    <div className='mx-auto mb-5 max-w-340 px-4 py-10 sm:px-6 lg:mb-10 lg:px-8 lg:py-14'>
+      <div className='mx-auto mb-10 max-w-3xl space-y-6 text-center lg:mb-14'>
         <h1 className='hero-gradient-heading'>{t('title')}</h1>
         <p className='mx-auto text-lg text-neutral-500 md:text-xl'>
           {t('subtitle')}
         </p>
       </div>
-    </section>
+
+      <div className='grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+        {MOVIES.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            {...movie}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
