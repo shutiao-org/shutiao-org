@@ -179,5 +179,20 @@
     "good-evening": "Good evening",
     "announcement": "Announcement",
     "check-updates": "Check out our latest product updates"
+  },
+  "cmdk": {
+    "searchPlaceholder": "Search...",
+    "noResults": "No results found.",
+    "suggestions": "Suggestions",
+    "commands": "Commands",
+    "toggle": "Toggle",
+    "light": "Light",
+    "dark": "Dark",
+    "mode": "Mode",
+    "switchTo": "Switch to",
+    "command": "Command",
+    "application": "Application",
+    "openApplication": "Open Application",
+    "actions": "Actions"
   }
 }

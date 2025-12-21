@@ -6,6 +6,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import NextTopLoader from 'nextjs-toploader'
 import { GoogleOneTap } from '@/components/auth/google-one-tap'
+import { CommandMenu } from '@/components/cmdk'
 import { Analytics } from '@/components/common/analytics'
 import { AntdWrapper } from '@/components/others/antd-wrapper'
 import { ThemeProvider } from '@/components/theme/provider'
@@ -54,6 +55,7 @@ export default async function RootLayout({ children, params }: Props) {
             <TRPCReactProvider>
               <AntdWrapper>
                 {children}
+                <CommandMenu />
                 <GoogleOneTap />
                 <NextTopLoader />
                 <Analytics />

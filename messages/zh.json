@@ -179,5 +179,20 @@
     "good-evening": "晚上好",
     "announcement": "公告",
     "check-updates": "更新日志"
+  },
+  "cmdk": {
+    "searchPlaceholder": "搜索...",
+    "noResults": "未找到结果。",
+    "suggestions": "建议",
+    "commands": "命令",
+    "toggle": "切换",
+    "light": "浅色",
+    "dark": "深色",
+    "mode": "模式",
+    "switchTo": "切换到",
+    "command": "命令",
+    "application": "应用",
+    "openApplication": "打开应用",
+    "actions": "操作"
   }
 }
