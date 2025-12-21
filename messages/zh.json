@@ -159,5 +159,25 @@
     "terms-full": "服务条款",
     "privacy-full": "隐私政策",
     "copyright": "© 2025 整点薯条吧. 保留所有权利。"
+  },
+  "dashboard": {
+    "application": "应用",
+    "dashboard": "仪表盘",
+    "home": "首页",
+    "settings": "设置",
+    "support": "支持",
+    "feedback": "反馈",
+    "theme": "主题",
+    "light": "浅色",
+    "dark": "深色",
+    "language": "语言",
+    "log-out": "退出登录",
+    "have-question": "有问题吗？",
+    "join-telegram": "加入我们的 Telegram！",
+    "good-morning": "早上好",
+    "good-afternoon": "下午好",
+    "good-evening": "晚上好",
+    "announcement": "公告",
+    "check-updates": "更新日志"
   }
 }

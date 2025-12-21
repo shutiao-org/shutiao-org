@@ -6,7 +6,7 @@ import enUS from 'antd/es/locale/en_US'
 import zhCN from 'antd/es/locale/zh_CN'
 import { useLocale } from 'next-intl'
 import { useTheme } from 'next-themes'
-import { useIsClient } from '@/hooks/use-is-client'
+import { useIsClient } from '@/hooks/use-client'
 
 export function AntdWrapper({ children }: { children: React.ReactNode }) {
   const { resolvedTheme } = useTheme()

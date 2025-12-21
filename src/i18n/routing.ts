@@ -9,3 +9,8 @@ export const routing = defineRouting({
 
   localePrefix: 'as-needed',
 })
+
+export const languages = [
+  { code: 'en', label: 'English' },
+  { code: 'zh', label: '简体中文' },
+]

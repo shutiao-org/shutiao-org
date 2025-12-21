@@ -1,0 +1,43 @@
+'use client'
+
+import { useEffect } from 'react'
+import { useUserStore } from '@/stores/user'
+import { api } from '@/trpc/react'
+
+export function useUserInfo() {
+  const { userInfo, setUserInfo } = useUserStore()
+  const { data, error } = api.user.info.useQuery(undefined, {
+    retry: false,
+    refetchOnWindowFocus: false,
+  })
+
+  useEffect(() => {
+    if (error) {
+      if (error.data?.code === 'UNAUTHORIZED') {
+        setUserInfo(null)
+      }
+      return
+    }
+
+    if (data) {
+      setUserInfo({
+        id: data.id,
+        memberId: data.memberId,
+        uuid: data.uuid,
+        name: data.name,
+        email: data.email,
+        image: data.image,
+        createdAt:
+          data.createdAt instanceof Date
+            ? data.createdAt
+            : new Date(data.createdAt),
+        updatedAt:
+          data.updatedAt instanceof Date
+            ? data.updatedAt
+            : new Date(data.updatedAt),
+      })
+    }
+  }, [data, error, setUserInfo])
+
+  return userInfo
+}

@@ -43,7 +43,7 @@ export default async function RootLayout({ children, params }: Props) {
       className={cn(geist.variable)}
       suppressHydrationWarning
     >
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'

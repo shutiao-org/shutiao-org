@@ -1,64 +1,103 @@
 'use client'
 
-import { Home } from 'lucide-react'
-import Link from 'next/link'
+import type { LucideIcon } from 'lucide-react'
+import { Home, LifeBuoy, Send, Settings } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import { NavLogo } from '@/components/dashboard/sidebar/logo'
+import { useTranslations } from 'next-intl'
+import { NavGroup } from '@/components/dashboard/sidebar/nav-group'
+import { NavLogo } from '@/components/dashboard/sidebar/nav-logo'
+import { NavSecondary } from '@/components/dashboard/sidebar/nav-secondary'
+import { NavUser } from '@/components/dashboard/sidebar/nav-user'
 import {
   Sidebar,
   SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
+  SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
   SidebarRail,
 } from '@/components/ui/sidebar'
+import { DASHBOARD_HOME_PAGE, SETTINGS_PAGE } from '@/routes'
 
-const items = [
-  {
-    title: 'Home',
-    url: '/',
-    icon: Home,
-  },
-]
+type MenuItem = {
+  nameKey: string
+  url: string
+  icon: LucideIcon
+}
 
-export function AppSidebar() {
+export function AppSidebar({
+  user,
+}: {
+  user: {
+    name: string
+    email: string
+    image?: string | null
+  }
+}) {
   const pathname = usePathname()
+  const t = useTranslations('dashboard')
+
+  const homeItem: MenuItem[] = [
+    {
+      nameKey: 'home',
+      url: DASHBOARD_HOME_PAGE,
+      icon: Home,
+    },
+    {
+      nameKey: 'settings',
+      url: SETTINGS_PAGE,
+      icon: Settings,
+    },
+  ]
+
+  const navSecondary: MenuItem[] = [
+    {
+      nameKey: 'support',
+      url: 'mailto:shutiaoorg@gmail.com',
+      icon: LifeBuoy,
+    },
+    {
+      nameKey: 'feedback',
+      url: 'https://github.com/shutiao-org/shutiao-org/issues',
+      icon: Send,
+    },
+  ]
 
   return (
-    <Sidebar variant='floating'>
+    <Sidebar
+      collapsible='icon'
+      variant='inset'
+    >
+      <SidebarRail />
       <SidebarHeader>
         <NavLogo />
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => {
-                const isActive = pathname === item.url
-                return (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={isActive}
-                    >
-                      <Link href={item.url}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                )
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <NavGroup
+          pathname={pathname}
+          projects={homeItem.map((item) => ({
+            name: t(item.nameKey),
+            url: item.url,
+            icon: item.icon,
+          }))}
+          labelKey={t('application')}
+        />
+        <NavSecondary
+          items={navSecondary.map((item) => ({
+            title: t(item.nameKey),
+            url: item.url,
+            icon: item.icon,
+          }))}
+          className='mt-auto'
+        />
       </SidebarContent>
-      <SidebarRail />
+      <SidebarFooter>
+        <NavUser
+          user={{
+            name: user.name,
+            email: user.email,
+            avatar: user.image || '',
+          }}
+        />
+      </SidebarFooter>
     </Sidebar>
   )
 }

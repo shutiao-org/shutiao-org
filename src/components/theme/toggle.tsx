@@ -13,6 +13,7 @@ interface ThemeToggleProps {
 
 export function ThemeToggle({
   strokeWidth = 2.25,
+  size = 24,
   className,
 }: ThemeToggleProps) {
   const { setTheme, resolvedTheme } = useTheme()
@@ -38,12 +39,14 @@ export function ThemeToggle({
       aria-label='Toggle theme'
     >
       <Sun
-        className={cn('size-6 dark:hidden', className)}
+        className={cn('dark:hidden', className)}
+        size={size}
         strokeWidth={strokeWidth}
         absoluteStrokeWidth
       />
       <Moon
-        className={cn('hidden size-6 dark:block', className)}
+        className={cn('hidden dark:block', className)}
+        size={size}
         strokeWidth={strokeWidth}
         absoluteStrokeWidth
       />

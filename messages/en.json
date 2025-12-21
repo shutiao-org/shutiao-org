@@ -159,5 +159,25 @@
     "terms-full": "Terms and Conditions",
     "privacy-full": "Privacy Policy",
     "copyright": "© 2025 Fries Bar. All rights reserved."
+  },
+  "dashboard": {
+    "application": "Application",
+    "dashboard": "Dashboard",
+    "home": "Home",
+    "settings": "Settings",
+    "support": "Support",
+    "feedback": "Feedback",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "language": "Language",
+    "log-out": "Log out",
+    "have-question": "Have a question?",
+    "join-telegram": "Join our Telegram!",
+    "good-morning": "Good morning",
+    "good-afternoon": "Good afternoon",
+    "good-evening": "Good evening",
+    "announcement": "Announcement",
+    "check-updates": "Check out our latest product updates"
   }
 }

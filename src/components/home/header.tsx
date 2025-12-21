@@ -1,14 +1,20 @@
+'use client'
+
 import { Github } from 'lucide-react'
 import Link from 'next/link'
 import { Logo } from '@/components/common/logo'
 import { Nav, NavMobile } from '@/components/home/nav'
+import { UserAvatar } from '@/components/home/user-avatar'
 import { ThemeToggle } from '@/components/theme/toggle'
 import { ShinyButton } from '@/components/ui/shiny-button'
 import { SOCIAL_LINKS } from '@/config'
+import { useSession } from '@/lib/auth/client'
 import { cn } from '@/lib/utils'
 import { SIGN_IN_PAGE } from '@/routes'
 
 export function Header() {
+  const { data: session } = useSession()
+
   return (
     <>
       <header
@@ -28,7 +34,7 @@ export function Header() {
           <Nav />
         </div>
 
-        <div className='flex flex-1 items-center justify-end gap-5'>
+        <div className='flex flex-1 items-center justify-end gap-6'>
           <div className='hidden items-center lg:flex'>
             <Link
               href={SOCIAL_LINKS.github}
@@ -43,13 +49,17 @@ export function Header() {
             <ThemeToggle data-umami-event='header:theme-toggle' />
           </div>
 
-          <Link
-            href={SIGN_IN_PAGE}
-            data-umami-event='header:login'
-            className='flex items-center'
-          >
-            <ShinyButton>Login</ShinyButton>
-          </Link>
+          {session?.user ? (
+            <UserAvatar />
+          ) : (
+            <Link
+              href={SIGN_IN_PAGE}
+              data-umami-event='header:login'
+              className='flex items-center'
+            >
+              <ShinyButton>Login</ShinyButton>
+            </Link>
+          )}
 
           <div className='lg:hidden'>
             <NavMobile />

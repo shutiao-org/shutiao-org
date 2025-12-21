@@ -8,6 +8,13 @@
       "when": 1761762268579,
       "tag": "0000_stormy_magdalene",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1766315281380,
+      "tag": "0001_perfect_red_skull",
+      "breakpoints": true
     }
   ]
 }
