@@ -1,6 +1,6 @@
 {
   "name": "fries-bar",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "contentlayer2 build && next dev",

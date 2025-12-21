@@ -72,13 +72,7 @@ export function GoogleOneTap() {
             return
           }
 
-          // If we get a URL, redirect to OAuth flow
-          if (data?.url) {
-            window.location.href = data.url
-            return
-          }
-
-          // If sign-in was successful
+          // If sign-in was successful, redirect to dashboard
           if (data) {
             toast.success(t('sign-in-success'))
             router.push(DASHBOARD_HOME_PAGE)

@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils'
 import { SIGN_IN_PAGE } from '@/routes'
 
 export function Header() {
-  const { data: session } = useSession()
+  const { data: session, isPending } = useSession()
 
   return (
     <>
@@ -49,7 +49,11 @@ export function Header() {
             <ThemeToggle data-umami-event='header:theme-toggle' />
           </div>
 
-          {session?.user ? (
+          {isPending ? (
+            <div className='flex h-10 w-10 items-center justify-center'>
+              <div className='size-8 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700' />
+            </div>
+          ) : session?.user ? (
             <UserAvatar />
           ) : (
             <Link

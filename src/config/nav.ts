@@ -10,13 +10,6 @@ export const NAV_ENTRIES: NavEntry[] = [
     items: [{ href: '/events', label: 'events', icon: '🎉' }],
   },
   {
-    title: 'work',
-    items: [
-      { href: '/work/recruit', label: 'recruit', icon: '💼' },
-      { href: '/work/seek', label: 'seek', icon: '🔍' },
-    ],
-  },
-  {
     title: 'living',
     items: [
       { href: '/living/books', label: 'books', icon: '📚' },
@@ -32,6 +25,13 @@ export const NAV_ENTRIES: NavEntry[] = [
       { href: 'https://dalifornia.org', label: 'dali', icon: '☁️' },
       { href: 'https://chiangmai.cool', label: 'chiangmai', icon: '🐘' },
       { href: '/communities/explore', label: 'explore', icon: '🗺️' },
+    ],
+  },
+  {
+    title: 'work',
+    items: [
+      { href: '/work/recruit', label: 'recruit', icon: '💼' },
+      { href: '/work/seek', label: 'seek', icon: '🔍' },
     ],
   },
   {

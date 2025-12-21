@@ -70,7 +70,7 @@ export function UserAvatar() {
           className='relative flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full'
           data-umami-event='header:user-menu'
         >
-          <Avatar className='size-10 rounded-full'>
+          <Avatar className='size-8 rounded-full'>
             <AvatarImage
               src={session.user.image || undefined}
               alt={session.user.name}

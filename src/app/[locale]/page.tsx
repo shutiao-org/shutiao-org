@@ -1,3 +1,4 @@
+import { GoogleOneTap } from '@/components/auth/google-one-tap'
 import { NoiseBg } from '@/components/common/noise-bg'
 import { SocialMedia } from '@/components/common/social-media'
 import { Footer } from '@/components/home/footer'
@@ -14,6 +15,7 @@ export default async function HomePage() {
       </div>
       <Footer />
       <NoiseBg />
+      <GoogleOneTap />
     </div>
   )
 }

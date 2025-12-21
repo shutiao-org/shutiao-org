@@ -30,6 +30,7 @@ export function SocialLogin() {
     try {
       const { data, error } = await signIn.social({
         provider,
+        callbackURL: DASHBOARD_HOME_PAGE,
       })
 
       if (error) {
@@ -47,6 +48,7 @@ export function SocialLogin() {
         toast.success(t('sign-in-success'))
         router.push(DASHBOARD_HOME_PAGE)
         router.refresh()
+        setLoading(false)
       }
     } catch (_err) {
       toast.error(t('network-error'))
