@@ -1,0 +1,7 @@
+.maplibregl-ctrl-attrib.maplibregl-compact {
+  display: none !important;
+}
+
+.maplibregl-ctrl-bottom-right > details {
+  display: none !important;
+}

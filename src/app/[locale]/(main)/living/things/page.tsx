@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { ThingsCard } from '@/components/things/card'
-import { THINGS } from '@/config/things'
+import { THINGS } from '@/config'
 
 export default function ThingsPage() {
   const t = useTranslations('things')

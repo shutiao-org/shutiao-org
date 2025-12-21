@@ -1,15 +1,5 @@
 import type { NavEntry } from '@/types'
 
-export const SOCIAL_LINKS = {
-  telegram: 'https://t.me/guoqisun',
-  x: 'https://x.com/shutiaoorg',
-  github: 'https://github.com/shutiao-org/shutiao-org',
-  podcast: 'https://shutiao.life',
-  youtube: 'https://www.youtube.com/@sun0225SUN',
-  wechat: 'https://mp.guoqi.dev',
-  email: 'mailto:shutiaoorg@gmail.com',
-}
-
 export const NAV_ENTRIES: NavEntry[] = [
   {
     title: 'products',
@@ -33,10 +23,9 @@ export const NAV_ENTRIES: NavEntry[] = [
       { href: '/living/movies', label: 'movies', icon: '🎬' },
       { href: '/living/music', label: 'music', icon: '🎵' },
       { href: '/living/podcasts', label: 'podcasts', icon: '🎙️' },
-      { href: '/living/things', label: 'things', icon: '🎁' },
-      { href: '/living/explore', label: 'explore', icon: '🗺️' },
       { href: 'https://cyc.earth', label: 'cycling', icon: '🚴' },
       { href: 'https://camlife.app', label: 'photography', icon: '📷' },
+      { href: '/living/things', label: 'things', icon: '🎁' },
     ],
   },
   {
@@ -44,6 +33,7 @@ export const NAV_ENTRIES: NavEntry[] = [
     items: [
       { href: 'https://dalifornia.org', label: 'dali', icon: '☁️' },
       { href: 'https://chiangmai.cool', label: 'chiangmai', icon: '🐘' },
+      { href: '/communities/explore', label: 'explore', icon: '🗺️' },
     ],
   },
   {

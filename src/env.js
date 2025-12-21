@@ -25,6 +25,7 @@ export const env = createEnv({
     NEXT_PUBLIC_MICROSOFT_CLARITY_ID: z.string().optional(),
     NEXT_PUBLIC_GITHUB_CLIENT_ID: z.string().optional(),
     NEXT_PUBLIC_GOOGLE_CLIENT_ID: z.string().optional(),
+    NEXT_PUBLIC_ARCGIS_ACCESS_TOKEN: z.string().optional(),
   },
 
   /**
@@ -43,6 +44,8 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_MICROSOFT_CLARITY_ID,
     NEXT_PUBLIC_GITHUB_CLIENT_ID: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
     NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    NEXT_PUBLIC_ARCGIS_ACCESS_TOKEN:
+      process.env.NEXT_PUBLIC_ARCGIS_ACCESS_TOKEN,
   },
 
   /**
