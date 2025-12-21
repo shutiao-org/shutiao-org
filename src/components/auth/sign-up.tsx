@@ -1,6 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
@@ -107,6 +108,7 @@ export function SignUp() {
 
   return (
     <>
+      <p className='text-center text-5xl'>🍟</p>
       <p className='mt-3 mb-6 text-center font-bold text-2xl'>{t('sign-up')}</p>
 
       <Card className='relative border-none p-0'>
@@ -219,6 +221,18 @@ export function SignUp() {
                   {isLoading ? <Spinner /> : t('sign-up')}
                 </Button>
               </form>
+
+              <div className='mt-6 text-center'>
+                <p className='text-muted-foreground text-sm'>
+                  {t('already-have-account')}{' '}
+                  <Link
+                    href={SIGN_IN_PAGE}
+                    className='font-medium text-primary hover:underline'
+                  >
+                    {t('go-to-sign-in')}
+                  </Link>
+                </p>
+              </div>
             </Form>
           </CardContent>
         </MagicCard>

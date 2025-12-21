@@ -1,6 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
@@ -23,7 +24,7 @@ import { MagicCard } from '@/components/ui/magic-card'
 import { PasswordInput } from '@/components/ui/password-input'
 import { Spinner } from '@/components/ui/spinner'
 import { signIn } from '@/lib/auth/client'
-import { DASHBOARD_HOME_PAGE } from '@/routes'
+import { DASHBOARD_HOME_PAGE, SIGN_UP_PAGE } from '@/routes'
 
 export function SignIn() {
   const t = useTranslations('auth')
@@ -79,6 +80,7 @@ export function SignIn() {
 
   return (
     <>
+      <p className='text-center text-5xl'>🍟</p>
       <p className='mt-3 mb-6 text-center font-bold text-2xl'>{t('sign-in')}</p>
 
       <Card className='relative border-none p-0'>
@@ -144,11 +146,23 @@ export function SignIn() {
                 <Button
                   type='submit'
                   className='mt-4 h-10 w-full cursor-pointer'
-                  disabled={true}
+                  disabled={isLoading}
                 >
                   {isLoading ? <Spinner /> : t('sign-in')}
                 </Button>
               </form>
+
+              <div className='mt-6 text-center'>
+                <p className='text-muted-foreground text-sm'>
+                  {t('no-account-yet')}{' '}
+                  <Link
+                    href={SIGN_UP_PAGE}
+                    className='font-medium text-primary hover:underline'
+                  >
+                    {t('go-to-sign-up')}
+                  </Link>
+                </p>
+              </div>
             </Form>
           </CardContent>
         </MagicCard>
