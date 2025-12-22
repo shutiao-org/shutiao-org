@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import lusun from '@/assets/images/png/lusun.png'
+import Twitfast from '@/assets/images/png/twitfast.png'
 import Juchats from '@/assets/images/svg/juchats.svg'
 import Mentorbook from '@/assets/images/svg/mentorbook.svg'
 import Podwise1 from '@/assets/images/svg/podwise-1.svg'
@@ -71,6 +72,23 @@ export default function ProductPage() {
       href: 'https://www.juchats.com?ref=shutiao.org',
       umamiEvent: 'products:juchats',
       logo: <Juchats className='h-7 w-auto' />,
+    },
+    {
+      name: 'TwitFast',
+      href: 'https://twitfast.com?ref=shutiao.org',
+      umamiEvent: 'products:twitfast',
+      logo: (
+        <div className='flex items-center gap-3'>
+          <Image
+            src={Twitfast}
+            alt='twitfast'
+            width={40}
+            height={40}
+            className='rounded-lg'
+          />
+          <span className='font-medium text-xl'>TwitFast</span>
+        </div>
+      ),
     },
   ]
 
