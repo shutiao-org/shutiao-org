@@ -1,0 +1,7 @@
+.prose img {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+}

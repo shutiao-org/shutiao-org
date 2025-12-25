@@ -1,6 +1,7 @@
 'use client'
 
 import { useMDXComponent } from 'next-contentlayer2/hooks'
+import '@/styles/markdown.css'
 
 interface MdxProps {
   code: string
