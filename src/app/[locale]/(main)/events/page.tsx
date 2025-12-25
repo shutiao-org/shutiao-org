@@ -26,15 +26,15 @@ export default async function EventPage({
   }))
 
   return (
-    <div className='flex w-full flex-col items-center justify-center pt-20 pb-10'>
-      <div className='max-w-3xl space-y-6 text-center'>
+    <div className='flex w-full flex-col items-center justify-center pt-12 pb-6 md:pt-20 md:pb-10'>
+      <div className='max-w-3xl space-y-4 px-4 text-center md:space-y-6 md:px-0'>
         <h1 className='hero-gradient-heading'>{t('title')}</h1>
-        <p className='mx-auto text-lg text-neutral-500 md:text-xl'>
+        <p className='mx-auto text-base text-neutral-500 md:text-lg lg:text-xl'>
           {t('subtitle')}
         </p>
       </div>
 
-      <div className='timeline-wrapper relative w-full'>
+      <div className='relative w-full'>
         <Timeline data={data} />
       </div>
     </div>

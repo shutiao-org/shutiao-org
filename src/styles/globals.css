@@ -6,8 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans:
-    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -130,6 +129,14 @@
 @layer components {
   .hero-gradient-heading {
     @apply bg-linear-to-b from-neutral-200 to-neutral-600 bg-clip-text font-bold text-4xl text-transparent md:text-6xl md:leading-tight dark:from-neutral-50 dark:to-neutral-400;
+  }
+
+  .prose img {
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    display: block !important;
+    max-width: 100% !important;
+    height: auto !important;
   }
 }
 
