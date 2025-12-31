@@ -9,6 +9,7 @@ import { CommandMenu } from '@/components/cmdk'
 import { Analytics } from '@/components/common/analytics'
 import { AntdWrapper } from '@/components/others/antd-wrapper'
 import { ThemeProvider } from '@/components/theme/provider'
+import { Toaster } from '@/components/ui/sonner'
 import { geist } from '@/fonts'
 import { routing } from '@/i18n/routing'
 import { cn } from '@/lib/utils'
@@ -55,9 +56,9 @@ export default async function RootLayout({ children, params }: Props) {
               <AntdWrapper>
                 {children}
                 <CommandMenu />
-
                 <NextTopLoader />
                 <Analytics />
+                <Toaster />
               </AntdWrapper>
             </TRPCReactProvider>
           </NextIntlClientProvider>

@@ -9,7 +9,7 @@ export default async function SettingsPage() {
         <SidebarTrigger />
       </div>
 
-      <p className='text-center font-bold text-2xl'>TODO: Settings page</p>
+      <p className='text-center font-bold text-2xl'>Settings page</p>
     </main>
   )
 }

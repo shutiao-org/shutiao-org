@@ -1,12 +1,14 @@
 {
   "i18n-ally.localesPaths": ["messages", "src/i18n"],
   "cSpell.words": [
-    "Dalifornia",
+    "dalifornia",
     "toploader",
     "turbopack",
-    "UMAMI",
-    "Wayto",
-    "wechat"
+    "umami",
+    "wayto",
+    "wechat",
+    "shutiao"
   ],
-  "i18n-ally.sourceLanguage": "en"
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.keystyle": "nested"
 }

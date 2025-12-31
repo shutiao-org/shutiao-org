@@ -1,9 +1,8 @@
 import { boolean, pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core'
 
 export const user = pgTable('user', {
-  id: text('id').primaryKey(), // better-auth 使用的主键
-  memberId: serial('member_id').notNull().unique(), // 会员 ID（自增）
-  uuid: text('uuid').unique(), // UUID（使用 nanoId 生成，允许为空，用于现有数据迁移）
+  id: text('id').primaryKey(),
+  memberId: serial('member_id').notNull().unique(),
   name: text('name').notNull(),
   email: text('email').notNull().unique(),
   emailVerified: boolean('email_verified').default(false).notNull(),

@@ -23,7 +23,13 @@ export function useUserInfo() {
       setUserInfo({
         id: data.id,
         memberId: data.memberId,
-        uuid: data.uuid,
+        bonjourId: data.bonjourId,
+        bonjourIdUpdatedAt: data.bonjourIdUpdatedAt
+          ? data.bonjourIdUpdatedAt instanceof Date
+            ? data.bonjourIdUpdatedAt
+            : new Date(data.bonjourIdUpdatedAt)
+          : null,
+        bonjourIdUpdateCount: data.bonjourIdUpdateCount,
         name: data.name,
         email: data.email,
         image: data.image,

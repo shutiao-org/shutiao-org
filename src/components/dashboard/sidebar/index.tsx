@@ -1,8 +1,5 @@
 'use client'
 
-import type { LucideIcon } from 'lucide-react'
-import { Home, LifeBuoy, Send, Settings } from 'lucide-react'
-import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { NavGroup } from '@/components/dashboard/sidebar/nav-group'
 import { NavLogo } from '@/components/dashboard/sidebar/nav-logo'
@@ -15,13 +12,8 @@ import {
   SidebarHeader,
   SidebarRail,
 } from '@/components/ui/sidebar'
-import { DASHBOARD_HOME_PAGE, SETTINGS_PAGE } from '@/routes'
-
-type MenuItem = {
-  nameKey: string
-  url: string
-  icon: LucideIcon
-}
+import { HOME_MENU_ITEMS, NAV_SECONDARY_ITEMS } from '@/config'
+import { usePathname } from '@/i18n/navigation'
 
 export function AppSidebar({
   user,
@@ -35,32 +27,6 @@ export function AppSidebar({
   const pathname = usePathname()
   const t = useTranslations('dashboard')
 
-  const homeItem: MenuItem[] = [
-    {
-      nameKey: 'home',
-      url: DASHBOARD_HOME_PAGE,
-      icon: Home,
-    },
-    {
-      nameKey: 'settings',
-      url: SETTINGS_PAGE,
-      icon: Settings,
-    },
-  ]
-
-  const navSecondary: MenuItem[] = [
-    {
-      nameKey: 'support',
-      url: 'mailto:shutiaoorg@gmail.com',
-      icon: LifeBuoy,
-    },
-    {
-      nameKey: 'feedback',
-      url: 'https://github.com/shutiao-org/shutiao-org/issues',
-      icon: Send,
-    },
-  ]
-
   return (
     <Sidebar
       collapsible='icon'
@@ -73,7 +39,7 @@ export function AppSidebar({
       <SidebarContent>
         <NavGroup
           pathname={pathname}
-          projects={homeItem.map((item) => ({
+          projects={HOME_MENU_ITEMS.map((item) => ({
             name: t(item.nameKey),
             url: item.url,
             icon: item.icon,
@@ -81,7 +47,7 @@ export function AppSidebar({
           labelKey={t('application')}
         />
         <NavSecondary
-          items={navSecondary.map((item) => ({
+          items={NAV_SECONDARY_ITEMS.map((item) => ({
             title: t(item.nameKey),
             url: item.url,
             icon: item.icon,

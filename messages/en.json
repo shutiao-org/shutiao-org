@@ -177,6 +177,7 @@
   "dashboard": {
     "application": "Application",
     "dashboard": "Dashboard",
+    "bonjour": "Bonjour",
     "home": "Home",
     "settings": "Settings",
     "support": "Support",
@@ -192,7 +193,23 @@
     "good-afternoon": "Good afternoon",
     "good-evening": "Good evening",
     "announcement": "Announcement",
-    "check-updates": "Check out our latest product updates"
+    "check-updates": "Check out our latest product updates",
+    "github": "Github",
+    "claim-link": {
+      "greeting": "Hello World 👋",
+      "title": "First, claim your unique link",
+      "subtitle": "The good ones are still available!",
+      "placeholder": "yourname",
+      "prefix": "shutiao.org/",
+      "button": "Claim",
+      "validating": "Checking availability...",
+      "required": "Please enter a unique ID",
+      "invalid": "Only lowercase letters, numbers, and hyphens are allowed",
+      "min-length": "ID must be at least 3 characters",
+      "max-length": "ID must be at most 18 characters",
+      "taken": "This ID is already taken",
+      "success": "Link claimed successfully!"
+    }
   },
   "cmdk": {
     "searchPlaceholder": "Search...",
