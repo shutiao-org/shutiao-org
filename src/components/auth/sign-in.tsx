@@ -25,7 +25,7 @@ import { MagicCard } from '@/components/ui/magic-card'
 import { PasswordInput } from '@/components/ui/password-input'
 import { Spinner } from '@/components/ui/spinner'
 import { signIn } from '@/lib/auth/client'
-import { DASHBOARD_HOME_PAGE, SIGN_UP_PAGE } from '@/routes'
+import { REDIRECT_DASHBOARD_PAGE, SIGN_UP_PAGE } from '@/routes'
 
 export function SignIn() {
   const t = useTranslations('auth')
@@ -67,7 +67,7 @@ export function SignIn() {
 
       if (signInData) {
         toast.success(t('sign-in-success'))
-        router.push(DASHBOARD_HOME_PAGE)
+        router.push(REDIRECT_DASHBOARD_PAGE)
         router.refresh()
       }
     } catch (_err) {

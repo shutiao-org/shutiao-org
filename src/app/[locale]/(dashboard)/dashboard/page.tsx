@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
-import { DASHBOARD_HOME_PAGE } from '@/routes'
+import { REDIRECT_DASHBOARD_PAGE } from '@/routes'
 
 export default function DashboardPage() {
-  redirect(DASHBOARD_HOME_PAGE)
+  redirect(REDIRECT_DASHBOARD_PAGE)
 }

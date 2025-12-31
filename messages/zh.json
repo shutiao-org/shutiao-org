@@ -177,6 +177,7 @@
   "dashboard": {
     "application": "应用",
     "dashboard": "仪表盘",
+    "bonjour": "你好",
     "home": "首页",
     "settings": "设置",
     "support": "支持",
@@ -192,7 +193,23 @@
     "good-afternoon": "下午好",
     "good-evening": "晚上好",
     "announcement": "公告",
-    "check-updates": "更新日志"
+    "check-updates": "更新日志",
+    "github": "Github",
+    "claim-link": {
+      "greeting": "你好世界 👋",
+      "title": "首先，认领您的唯一链接",
+      "subtitle": "好的链接仍然可用！",
+      "placeholder": "您的用户名",
+      "prefix": "shutiao.org/",
+      "button": "认领",
+      "validating": "正在检查可用性...",
+      "required": "请输入唯一ID",
+      "invalid": "只能使用小写字母、数字和连字符",
+      "min-length": "ID至少需要3个字符",
+      "max-length": "ID最多18个字符",
+      "taken": "此ID已被占用",
+      "success": "链接认领成功！"
+    }
   },
   "cmdk": {
     "searchPlaceholder": "搜索...",

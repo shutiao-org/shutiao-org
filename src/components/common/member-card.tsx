@@ -49,7 +49,7 @@ export function MemberCard() {
           <div className='absolute top-[30px] right-[25px] text-4xl'>🍟</div>
 
           <div className='relative top-[30px] left-[25px] uppercase'>
-            Investor
+            shutiao
           </div>
 
           <div
@@ -111,8 +111,8 @@ export function MemberCard() {
             </span>
           </div>
 
-          <div className="mx-[25px] mt-2.5 font-['cc_font',monospace] uppercase">
-            {userInfo?.name ? userInfo.name.toUpperCase() : 'USER'}
+          <div className="mx-[25px] mt-2.5 font-['cc_font',monospace]">
+            {userInfo?.bonjourId ?? 'undefined'}
           </div>
 
           <div className='absolute right-5 bottom-5 flex'>

@@ -3,9 +3,11 @@ import postgres from 'postgres'
 import { env } from '@/env'
 
 import * as authSchema from './schema/auth'
+import * as bonjourSchema from './schema/bonjour'
 
 const schema = {
   ...authSchema,
+  ...bonjourSchema,
 }
 
 /**

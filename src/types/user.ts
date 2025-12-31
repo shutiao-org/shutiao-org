@@ -1,7 +1,9 @@
 export interface UserInfo {
   id: string
   memberId: number
-  uuid: string | null
+  bonjourId: string | null
+  bonjourIdUpdatedAt: Date | null
+  bonjourIdUpdateCount: number
   name: string
   email: string
   image?: string | null

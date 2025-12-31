@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Spinner } from '@/components/ui/spinner'
 import { signIn } from '@/lib/auth/client'
-import { DASHBOARD_HOME_PAGE } from '@/routes'
+import { REDIRECT_DASHBOARD_PAGE } from '@/routes'
 
 type SocialProvider = 'google' | 'github'
 
@@ -30,7 +30,7 @@ export function SocialLogin() {
     try {
       const { data, error } = await signIn.social({
         provider,
-        callbackURL: DASHBOARD_HOME_PAGE,
+        callbackURL: REDIRECT_DASHBOARD_PAGE,
       })
 
       if (error) {
@@ -46,7 +46,7 @@ export function SocialLogin() {
 
       if (data) {
         toast.success(t('sign-in-success'))
-        router.push(DASHBOARD_HOME_PAGE)
+        router.push(REDIRECT_DASHBOARD_PAGE)
         router.refresh()
         setLoading(false)
       }

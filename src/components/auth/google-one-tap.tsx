@@ -7,7 +7,7 @@ import { useCallback, useEffect } from 'react'
 import { toast } from 'sonner'
 import { env } from '@/env'
 import { getSession, signIn } from '@/lib/auth/client'
-import { DASHBOARD_HOME_PAGE } from '@/routes'
+import { REDIRECT_DASHBOARD_PAGE } from '@/routes'
 
 interface CredentialResponse {
   credential: string
@@ -75,7 +75,7 @@ export function GoogleOneTap() {
           // If sign-in was successful, redirect to dashboard
           if (data) {
             toast.success(t('sign-in-success'))
-            router.push(DASHBOARD_HOME_PAGE)
+            router.push(REDIRECT_DASHBOARD_PAGE)
             router.refresh()
           }
         } catch (error) {

@@ -4,6 +4,7 @@ import { SocialMedia } from '@/components/common/social-media'
 import { Footer } from '@/components/home/footer'
 import { Header } from '@/components/home/header'
 import { Hero } from '@/components/home/hero'
+import { env } from '@/env'
 
 export default async function HomePage() {
   return (
@@ -15,7 +16,7 @@ export default async function HomePage() {
       </div>
       <Footer />
       <NoiseBg />
-      <GoogleOneTap />
+      {env.NODE_ENV !== 'development' && <GoogleOneTap />}
     </div>
   )
 }

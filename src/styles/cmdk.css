@@ -497,7 +497,6 @@
     color: var(--gray11);
   }
 
-  /* 底部操作栏 */
   .raycast-footer {
     display: flex;
     align-items: center;

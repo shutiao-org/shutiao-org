@@ -4,7 +4,7 @@ import type { LucideIcon } from 'lucide-react'
 import {
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
+  // SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -16,15 +16,19 @@ interface NavGroupProps {
   projects: {
     name: string
     url: string
-    icon: LucideIcon
+    icon: LucideIcon | (() => React.ReactNode)
   }[]
   labelKey: string
 }
 
-export function NavGroup({ pathname, projects, labelKey }: NavGroupProps) {
+export function NavGroup({
+  pathname,
+  projects,
+  // labelKey
+}: NavGroupProps) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{labelKey}</SidebarGroupLabel>
+      {/* <SidebarGroupLabel>{labelKey}</SidebarGroupLabel> */}
       <SidebarGroupContent>
         <SidebarMenu>
           {projects.map((item) => (
