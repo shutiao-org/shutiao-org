@@ -5,7 +5,7 @@ import { useUserStore } from '@/stores/user'
 import { api } from '@/trpc/react'
 
 export function useUserInfo() {
-  const { userInfo, setUserInfo } = useUserStore()
+  const { user, bonjourInfo, setUser, setBonjourInfo } = useUserStore()
   const { data, error } = api.user.info.useQuery(undefined, {
     retry: false,
     refetchOnWindowFocus: false,
@@ -14,22 +14,16 @@ export function useUserInfo() {
   useEffect(() => {
     if (error) {
       if (error.data?.code === 'UNAUTHORIZED') {
-        setUserInfo(null)
+        setUser(null)
+        setBonjourInfo(null)
       }
       return
     }
 
     if (data) {
-      setUserInfo({
+      const userData = {
         id: data.id,
         memberId: data.memberId,
-        bonjourId: data.bonjourId,
-        bonjourIdUpdatedAt: data.bonjourIdUpdatedAt
-          ? data.bonjourIdUpdatedAt instanceof Date
-            ? data.bonjourIdUpdatedAt
-            : new Date(data.bonjourIdUpdatedAt)
-          : null,
-        bonjourIdUpdateCount: data.bonjourIdUpdateCount,
         name: data.name,
         email: data.email,
         image: data.image,
@@ -41,9 +35,28 @@ export function useUserInfo() {
           data.updatedAt instanceof Date
             ? data.updatedAt
             : new Date(data.updatedAt),
-      })
-    }
-  }, [data, error, setUserInfo])
+      }
 
-  return userInfo
+      const bonjourData = {
+        bonjourId: data.bonjourId ?? null,
+        bonjourIdUpdatedAt: data.bonjourIdUpdatedAt
+          ? data.bonjourIdUpdatedAt instanceof Date
+            ? data.bonjourIdUpdatedAt
+            : new Date(data.bonjourIdUpdatedAt)
+          : null,
+        bonjourIdUpdateCount: data.bonjourIdUpdateCount ?? 0,
+        avatar: '',
+        displayName: '',
+        bio: '',
+      }
+
+      setUser(userData)
+      setBonjourInfo(bonjourData)
+    }
+  }, [data, error, setUser, setBonjourInfo])
+
+  if (user && bonjourInfo) {
+    return { ...user, ...bonjourInfo }
+  }
+  return null
 }

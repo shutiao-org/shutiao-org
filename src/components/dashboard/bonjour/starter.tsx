@@ -1,6 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -12,16 +13,19 @@ import { RainbowButton } from '@/components/ui/rainbow-button'
 import { Spinner } from '@/components/ui/spinner'
 import { useConfetti } from '@/hooks/use-confetti'
 import { cn } from '@/lib/utils'
+import { BONJOUR_STUDIO_PAGE } from '@/routes'
 import { useUserStore } from '@/stores/user'
 import { api } from '@/trpc/react'
 
 export function BonjourStarter() {
   const t = useTranslations('dashboard.claim-link')
-  const { updateBonjourId, updateUserInfo } = useUserStore()
-  const { playConfetti2 } = useConfetti()
+  const { updateBonjourId, updateBonjourInfo } = useUserStore()
+  const { playConfetti } = useConfetti()
+  const router = useRouter()
+
   const updateBonjourIdMutation = api.user.updateBonjourId.useMutation({
     onSuccess: (data) => {
-      updateUserInfo({
+      const bonjourUpdates = {
         bonjourId: data.bonjourId,
         bonjourIdUpdatedAt: data.bonjourIdUpdatedAt
           ? data.bonjourIdUpdatedAt instanceof Date
@@ -29,8 +33,10 @@ export function BonjourStarter() {
             : new Date(data.bonjourIdUpdatedAt)
           : null,
         bonjourIdUpdateCount: data.bonjourIdUpdateCount,
-      })
-      playConfetti2(3000)
+      }
+      updateBonjourInfo(bonjourUpdates)
+      playConfetti(3000)
+      router.push(BONJOUR_STUDIO_PAGE)
     },
   })
 
