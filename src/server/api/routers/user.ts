@@ -1,6 +1,10 @@
 import { and, eq, ne } from 'drizzle-orm'
 import { z } from 'zod'
-import { createTRPCRouter, protectedProcedure } from '@/server/api/trpc'
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from '@/server/api/trpc'
 import { user } from '@/server/db/schema/auth'
 import { bonjour } from '@/server/db/schema/bonjour'
 
@@ -139,6 +143,35 @@ export const userRouter = createTRPCRouter({
         image: result.image,
         createdAt: result.createdAt,
         updatedAt: result.updatedAt,
+      }
+    }),
+
+  getByBonjourId: publicProcedure
+    .input(z.string())
+    .query(async ({ ctx, input }) => {
+      const [result] = await ctx.db
+        .select({
+          id: user.id,
+          name: user.name,
+          image: user.image,
+          bio: bonjour.bio,
+          displayName: bonjour.displayName,
+          avatar: bonjour.avatar,
+        })
+        .from(bonjour)
+        .innerJoin(user, eq(bonjour.userId, user.id))
+        .where(eq(bonjour.bonjourId, input))
+        .limit(1)
+
+      if (!result) {
+        throw new Error('Bonjour ID not found')
+      }
+
+      return {
+        id: result.id,
+        name: result.displayName || result.name,
+        image: result.avatar || result.image,
+        bio: result.bio,
       }
     }),
 })
