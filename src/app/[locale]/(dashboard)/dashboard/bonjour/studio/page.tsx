@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
-import { BonjourStarter } from '@/components/dashboard/bonjour/starter'
-import { BONJOUR_STUDIO_PAGE } from '@/routes'
+import { BonjourStudio } from '@/components/dashboard/bonjour/studio'
+import { BONJOUR_STARTER_PAGE } from '@/routes'
 import { api } from '@/trpc/server'
 
 export default async function BonjourPage() {
@@ -9,8 +9,8 @@ export default async function BonjourPage() {
   const needStarter = !userInfo.bonjourId || userInfo.bonjourIdUpdateCount === 0
 
   if (needStarter) {
-    return <BonjourStarter />
+    return redirect(BONJOUR_STARTER_PAGE)
   }
 
-  redirect(BONJOUR_STUDIO_PAGE)
+  return <BonjourStudio />
 }

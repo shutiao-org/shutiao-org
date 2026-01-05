@@ -4,10 +4,11 @@ import { useUserStore } from '@/stores/user'
 import { generateCardNumber } from '@/utils'
 
 export function MemberCard() {
-  const { userInfo } = useUserStore()
+  const user = useUserStore((state) => state.user)
+  const bonjourInfo = useUserStore((state) => state.bonjourInfo)
 
-  const cardNumber = userInfo?.id
-    ? generateCardNumber(userInfo.id)
+  const cardNumber = user?.id
+    ? generateCardNumber(user.id)
     : ['0000', '0000', '0000', '0000']
 
   return (
@@ -105,14 +106,14 @@ export function MemberCard() {
           <div className="ml-[25px] font-['cc_font',monospace] uppercase">
             <span className='text-[9px] text-white/80'>created:</span>
             <span className='ml-1'>
-              {userInfo?.createdAt
-                ? new Date(userInfo.createdAt).toLocaleDateString()
+              {user?.createdAt
+                ? new Date(user.createdAt).toLocaleDateString()
                 : ''}
             </span>
           </div>
 
           <div className="mx-[25px] mt-2.5 font-['cc_font',monospace]">
-            {userInfo?.bonjourId ?? 'undefined'}
+            {bonjourInfo?.bonjourId ?? 'undefined'}
           </div>
 
           <div className='absolute right-5 bottom-5 flex'>
@@ -140,9 +141,7 @@ export function MemberCard() {
               ccv
             </span>
             <div className='flex h-full items-center justify-end'>
-              {userInfo?.memberId
-                ? String(userInfo.memberId).padStart(6, '0')
-                : '0000'}
+              {user?.memberId ? String(user.memberId).padStart(6, '0') : '0000'}
             </div>
           </div>
 
