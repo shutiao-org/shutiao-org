@@ -195,7 +195,7 @@
     "announcement": "Announcement",
     "check-updates": "Check out our latest product updates",
     "github": "Github",
-    "claim-link": {
+    "bonjour-starter": {
       "greeting": "Hello World 👋",
       "title": "First, claim your unique link",
       "subtitle": "The good ones are still available!",
@@ -204,7 +204,7 @@
       "button": "Claim",
       "validating": "Checking availability...",
       "required": "Please enter a unique ID",
-      "invalid": "Only lowercase letters, numbers, and hyphens are allowed",
+      "invalid": "Only letters, numbers, underscores, and hyphens are allowed",
       "min-length": "ID must be at least 3 characters",
       "max-length": "ID must be at most 18 characters",
       "taken": "This ID is already taken",

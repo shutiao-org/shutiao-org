@@ -8,7 +8,6 @@ import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -25,6 +24,7 @@ import { PasswordInput } from '@/components/ui/password-input'
 import { Spinner } from '@/components/ui/spinner'
 import { signIn, signUp } from '@/lib/auth/client'
 import { REDIRECT_DASHBOARD_PAGE, SIGN_IN_PAGE } from '@/routes'
+import { type SignUpFormData, useSignUpSchema } from '@/schemas'
 
 export function SignUp() {
   const t = useTranslations('auth')
@@ -33,27 +33,7 @@ export function SignUp() {
   const { theme } = useTheme()
   const gradientColor = theme === 'dark' ? '#262626' : '#D9D9D955'
 
-  const signUpSchema = z
-    .object({
-      name: z
-        .string()
-        .min(2, { message: t('username-required') })
-        .max(50, { message: t('username-required') }),
-      email: z.email({ message: t('email-invalid') }),
-      password: z
-        .string()
-        .min(8, { message: t('password-length') })
-        .regex(/[A-Z]/, { message: t('password-uppercase') })
-        .regex(/[a-z]/, { message: t('password-lowercase') })
-        .regex(/[0-9]/, { message: t('password-number') }),
-      confirmPassword: z.string(),
-    })
-    .refine((data) => data.password === data.confirmPassword, {
-      message: t('passwords-do-not-match'),
-      path: ['confirmPassword'],
-    })
-
-  type SignUpFormData = z.infer<typeof signUpSchema>
+  const signUpSchema = useSignUpSchema()
 
   const form = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),

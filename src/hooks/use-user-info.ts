@@ -1,11 +1,13 @@
 'use client'
 
 import { useEffect } from 'react'
+import { useBonjourStore } from '@/stores/bonjour'
 import { useUserStore } from '@/stores/user'
 import { api } from '@/trpc/react'
 
 export function useUserInfo() {
-  const { user, bonjourInfo, setUser, setBonjourInfo } = useUserStore()
+  const { user, setUser } = useUserStore()
+  const { bonjourInfo, setBonjourInfo } = useBonjourStore()
   const { data, error } = api.user.info.useQuery(undefined, {
     retry: false,
     refetchOnWindowFocus: false,
