@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { MemberCard } from '@/components/common/member-card'
 import { BackgroundLines } from '@/components/ui/background-lines'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
@@ -14,41 +13,27 @@ import { Spinner } from '@/components/ui/spinner'
 import { useConfetti } from '@/hooks/use-confetti'
 import { cn } from '@/lib/utils'
 import { BONJOUR_STUDIO_PAGE } from '@/routes'
-import { useUserStore } from '@/stores/user'
+import { type ClaimLinkFormData, useClaimLinkSchema } from '@/schemas'
+import { useBonjourStore } from '@/stores/bonjour'
 import { api } from '@/trpc/react'
 
 export function BonjourStarter() {
-  const t = useTranslations('dashboard.claim-link')
-  const { updateBonjourId, updateBonjourInfo } = useUserStore()
-  const { playConfetti } = useConfetti()
+  const t = useTranslations('dashboard.bonjour-starter')
+
+  const { updateBonjourId } = useBonjourStore()
+
   const router = useRouter()
 
-  const updateBonjourIdMutation = api.user.updateBonjourId.useMutation({
-    onSuccess: (data) => {
-      const bonjourUpdates = {
-        bonjourId: data.bonjourId,
-        bonjourIdUpdatedAt: data.bonjourIdUpdatedAt
-          ? data.bonjourIdUpdatedAt instanceof Date
-            ? data.bonjourIdUpdatedAt
-            : new Date(data.bonjourIdUpdatedAt)
-          : null,
-        bonjourIdUpdateCount: data.bonjourIdUpdateCount,
-      }
-      updateBonjourInfo(bonjourUpdates)
+  const { playConfetti } = useConfetti()
+
+  const updateBonjourIdMutation = api.bonjour.updateBonjourId.useMutation({
+    onSuccess: () => {
       playConfetti(3000)
       router.push(BONJOUR_STUDIO_PAGE)
     },
   })
 
-  const claimLinkSchema = z.object({
-    uniqueId: z
-      .string()
-      .min(3, { message: t('min-length') })
-      .max(18, { message: t('max-length') })
-      .regex(/^[a-zA-Z0-9-]+$/, { message: t('invalid') }),
-  })
-
-  type ClaimLinkFormData = z.infer<typeof claimLinkSchema>
+  const claimLinkSchema = useClaimLinkSchema()
 
   const form = useForm<ClaimLinkFormData>({
     resolver: zodResolver(claimLinkSchema),
@@ -107,13 +92,9 @@ export function BonjourStarter() {
                       className={cn(
                         'h-11 rounded-xl pr-3 pl-[85px] text-sm md:h-12 md:pl-[92px] md:text-base',
                       )}
-                      autoComplete='off'
-                      autoFocus
                       {...field}
                       onChange={(e) => {
-                        const value = e.target.value
-                          .replace(/[^a-zA-Z0-9-]/g, '')
-                          .slice(0, 18)
+                        const value = e.target.value.slice(0, 18)
                         field.onChange(value)
                         updateBonjourId(value || null)
                         form.trigger('uniqueId')

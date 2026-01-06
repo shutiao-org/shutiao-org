@@ -1,11 +1,12 @@
 'use client'
 
+import { useBonjourStore } from '@/stores/bonjour'
 import { useUserStore } from '@/stores/user'
 import { generateCardNumber } from '@/utils'
 
 export function MemberCard() {
   const user = useUserStore((state) => state.user)
-  const bonjourInfo = useUserStore((state) => state.bonjourInfo)
+  const bonjourInfo = useBonjourStore((state) => state.bonjourInfo)
 
   const cardNumber = user?.id
     ? generateCardNumber(user.id)

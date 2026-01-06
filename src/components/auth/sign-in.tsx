@@ -8,7 +8,6 @@ import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { z } from 'zod'
 import { SocialLogin } from '@/components/auth/social-login'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -26,6 +25,7 @@ import { PasswordInput } from '@/components/ui/password-input'
 import { Spinner } from '@/components/ui/spinner'
 import { signIn } from '@/lib/auth/client'
 import { REDIRECT_DASHBOARD_PAGE, SIGN_UP_PAGE } from '@/routes'
+import { type SignInFormData, useSignInSchema } from '@/schemas'
 
 export function SignIn() {
   const t = useTranslations('auth')
@@ -34,12 +34,7 @@ export function SignIn() {
   const { theme } = useTheme()
   const gradientColor = theme === 'dark' ? '#262626' : '#D9D9D955'
 
-  const signInSchema = z.object({
-    email: z.email({ message: t('email-invalid') }),
-    password: z.string().min(1, { message: t('password-required') }),
-  })
-
-  type SignInFormData = z.infer<typeof signInSchema>
+  const signInSchema = useSignInSchema()
 
   const form = useForm<SignInFormData>({
     resolver: zodResolver(signInSchema),
