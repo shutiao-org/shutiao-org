@@ -13,6 +13,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
+    "db:seed": "bun scripts/mock-lanterns.ts",
     "check": "biome check .",
     "typecheck": "tsc --noEmit",
     "check:unsafe": "biome check --write --unsafe .",

@@ -9,6 +9,7 @@ interface KoiFishProps {
   url: string
   reverse?: boolean
   offset?: number
+  onClick?: () => void
 }
 
 export function KoiFish({ url, reverse = false, offset = 0 }: KoiFishProps) {
@@ -40,8 +41,9 @@ export function KoiFish({ url, reverse = false, offset = 0 }: KoiFishProps) {
     }
   }, [geometry])
 
-  const { uniforms, processedGeometry } = useMemo(() => {
-    if (!geometry) return { uniforms: null, processedGeometry: null }
+  const { uniforms, processedGeometry, curve } = useMemo(() => {
+    if (!geometry)
+      return { uniforms: null, processedGeometry: null, curve: null }
 
     const baseVector = new THREE.Vector3(40, 0, 0)
     const axis = new THREE.Vector3(0, 1, 0)
@@ -121,7 +123,7 @@ export function KoiFish({ url, reverse = false, offset = 0 }: KoiFishProps) {
       uObjSize: { value: objSize },
     }
 
-    return { uniforms: objUniforms, processedGeometry }
+    return { uniforms: objUniforms, processedGeometry, curve }
   }, [geometry, reverse])
 
   const material = useMemo(() => {
@@ -174,24 +176,16 @@ export function KoiFish({ url, reverse = false, offset = 0 }: KoiFishProps) {
 
         float d = pos.z / uObjSize.z;
         float timeDirection = ${reverse ? '-1.0' : '1.0'};
-        float offsetValue = ${offset.toFixed(3)};
         float pathOffset = ${reverse ? (offset + 0.5).toFixed(3) : offset.toFixed(3)};
         float t = fract((uTime * 0.05 * timeDirection) + (d * uLengthRatio) + pathOffset);
-        float numPrev = floor(t / wStep);
-        float numNext = numPrev + 1.;
-        numNext = numNext >= uTextureSize.x ? 0.0 : numNext;
-        float tPrev = numPrev * wStep + hWStep;
-        float tNext = numNext * wStep + hWStep;
-        splineData splinePrev = getSplineData(tPrev);
-        splineData splineNext = getSplineData(tNext);
+        float numPrev = floor(t / uTextureSize.x); // Corrected indexing
+        
+        // Use a simpler approach for the shader since we move the mesh on CPU
+        // We only want the local deformation relative to the mesh position
+        splineData sdCenter = getSplineData(fract(uTime * 0.05 * timeDirection + pathOffset));
+        splineData sdVertex = getSplineData(t);
 
-        float f = (t - tPrev) / wStep;
-        f = smoothstep(0.0, 1.0, f);
-        vec3 P = mix(splinePrev.point, splineNext.point, f);
-        vec3 B = mix(splinePrev.binormal, splineNext.binormal, f);
-        vec3 N = mix(splinePrev.normal, splineNext.normal, f);
-
-        transformed = P + (N * pos.x) + (B * pos.y);
+        transformed = (sdVertex.point - sdCenter.point) + (sdVertex.normal * pos.x) + (sdVertex.binormal * pos.y);
       `,
       )
     }
@@ -200,8 +194,24 @@ export function KoiFish({ url, reverse = false, offset = 0 }: KoiFishProps) {
   }, [processedGeometry, uniforms, offset, reverse])
 
   useFrame((state) => {
+    const time = state.clock.elapsedTime
     if (uniformsRef.current) {
-      uniformsRef.current.uTime.value = state.clock.elapsedTime
+      uniformsRef.current.uTime.value = time
+    }
+
+    if (curve && meshRef.current) {
+      const timeDirection = reverse ? -1 : 1
+      const pathOffset = reverse ? offset + 0.5 : offset
+      const t = (((time * 0.05 * timeDirection + pathOffset) % 1) + 1) % 1
+
+      // Move the whole mesh object to the center of the fish on the curve
+      // This helps the raycaster find the mesh
+      curve.getPointAt(t, meshRef.current.position)
+
+      // Also make the bounding box very large as a fallback
+      if (!meshRef.current.geometry.boundingBox) {
+        meshRef.current.geometry.computeBoundingBox()
+      }
     }
   })
 
@@ -212,10 +222,21 @@ export function KoiFish({ url, reverse = false, offset = 0 }: KoiFishProps) {
   uniformsRef.current = uniforms
 
   return (
-    <mesh
-      ref={meshRef}
-      geometry={processedGeometry}
-      material={material}
-    />
+    <>
+      <mesh
+        ref={meshRef}
+        geometry={processedGeometry}
+        material={material}
+      />
+      {/* Invisible hitbox that follows the fish for reliable clicking */}
+      <mesh position={meshRef.current?.position}>
+        <sphereGeometry args={[15, 16, 16]} />
+        <meshBasicMaterial
+          visible={false}
+          transparent
+          opacity={0}
+        />
+      </mesh>
+    </>
   )
 }

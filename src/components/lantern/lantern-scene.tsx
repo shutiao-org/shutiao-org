@@ -5,6 +5,7 @@ import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
+import type { Lantern } from '@/server/db/schema/lantern'
 
 function createLanternGeometry() {
   const geoms: THREE.BufferGeometry[] = []
@@ -36,9 +37,6 @@ function createLanternMaterial() {
     },
     vertexShader: `
       uniform float uTime;
-
-      attribute vec3 instPos;
-      attribute float instSpeed;
       attribute vec2 instLight;
 
       varying vec2 vInstLight;
@@ -48,17 +46,8 @@ function createLanternMaterial() {
         vInstLight = instLight;
         vY = position.y;
 
-        vec3 pos = vec3(position) * 2.;
-        vec3 iPos = instPos * 200.;
-
-        iPos.xz += vec2(
-          cos(instLight.x + instLight.y * uTime),
-          sin(instLight.x + instLight.y * uTime * fract(sin(instLight.x)))
-        );
-
-        iPos.y = mod(iPos.y + 100. + (uTime * instSpeed), 200.) - 100.;
-        pos += iPos;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+        vec3 pos = position;
+        gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(pos, 1.0);
       }
     `,
     fragmentShader: `
@@ -87,9 +76,35 @@ function createLanternMaterial() {
   })
 }
 
-function Lanterns() {
-  const meshRef = useRef<THREE.Mesh>(null)
+function Lanterns({
+  lanterns,
+  onLanternClick,
+}: {
+  lanterns: Lantern[]
+  onLanternClick: (lantern: Lantern) => void
+}) {
+  const meshRef = useRef<THREE.InstancedMesh>(null)
   const materialRef = useRef<THREE.ShaderMaterial>(null)
+  const hoveredIndexRef = useRef<number | null>(null)
+
+  const instData = useMemo(() => {
+    const num = lanterns.length
+    const data = []
+    for (let i = 0; i < num; i++) {
+      data.push({
+        pos: new THREE.Vector3(
+          (Math.random() - 0.5) * 200,
+          (Math.random() - 0.5) * 200,
+          (Math.random() - 0.5) * 200,
+        ),
+        speed: Math.random() * 0.1 + 0.3,
+        offset: Math.PI + Math.PI * Math.random(),
+        phase: Math.random() + 5,
+        randomScale: 0.8 + Math.random() * 0.4,
+      })
+    }
+    return data
+  }, [lanterns])
 
   const instGeom = useMemo(() => {
     const fullGeom = createLanternGeometry()
@@ -104,60 +119,108 @@ function Lanterns() {
 
     instGeom.setIndex(fullGeom.getIndex())
 
-    const num = 500
-    const instPos: number[] = []
-    const instSpeed: number[] = []
+    const num = lanterns.length
     const instLight: number[] = []
 
     for (let i = 0; i < num; i++) {
-      instPos.push(
-        Math.random() - 0.5,
-        Math.random() - 0.5,
-        Math.random() - 0.5,
-      )
-      instSpeed.push(Math.random() * 0.1 + 0.3)
-      instLight.push(Math.PI + Math.PI * Math.random(), Math.random() + 5)
+      instLight.push(instData[i]!.offset, instData[i]!.phase)
     }
 
-    instGeom.setAttribute(
-      'instPos',
-      new THREE.InstancedBufferAttribute(new Float32Array(instPos), 3),
-    )
-    instGeom.setAttribute(
-      'instSpeed',
-      new THREE.InstancedBufferAttribute(new Float32Array(instSpeed), 1),
-    )
     instGeom.setAttribute(
       'instLight',
       new THREE.InstancedBufferAttribute(new Float32Array(instLight), 2),
     )
 
+    // Compute bounding volumes for raycasting
+    instGeom.computeBoundingBox()
+    instGeom.computeBoundingSphere()
+
     return instGeom
-  }, [])
+  }, [lanterns, instData])
 
   const material = useMemo(() => createLanternMaterial(), [])
 
+  const tempMatrix = useMemo(() => new THREE.Matrix4(), [])
+  const tempPos = useMemo(() => new THREE.Vector3(), [])
+
   useFrame((state: { clock: { elapsedTime: number } }) => {
+    const time = state.clock.elapsedTime
     if (materialRef.current?.uniforms?.uTime) {
-      materialRef.current.uniforms.uTime.value = state.clock.elapsedTime
+      materialRef.current.uniforms.uTime.value = time
+    }
+
+    if (meshRef.current) {
+      for (let i = 0; i < lanterns.length; i++) {
+        // If this lantern is hovered, stop its movement
+        if (i === hoveredIndexRef.current) continue
+
+        const d = instData[i]!
+        tempPos.copy(d.pos)
+
+        // Floating animation on CPU so raycasting works
+        tempPos.x += Math.cos(d.offset + d.phase * time)
+        tempPos.z += Math.sin(d.offset + d.phase * time * Math.sin(d.offset))
+        tempPos.y = ((d.pos.y + 100 + time * d.speed) % 200) - 100
+
+        tempMatrix.makeTranslation(tempPos.x, tempPos.y, tempPos.z)
+        tempMatrix.scale(
+          new THREE.Vector3(
+            d.randomScale * 2,
+            d.randomScale * 2,
+            d.randomScale * 2,
+          ),
+        )
+        meshRef.current.setMatrixAt(i, tempMatrix)
+      }
+      meshRef.current.instanceMatrix.needsUpdate = true
+      // Update bounding sphere for raycasting
+      if (!meshRef.current.geometry.boundingSphere) {
+        meshRef.current.geometry.computeBoundingSphere()
+      }
     }
   })
 
   return (
-    <mesh
+    <instancedMesh
+      key={lanterns.length}
       ref={(m) => {
-        meshRef.current = m
+        meshRef.current = m as unknown as THREE.InstancedMesh
         if (m) {
           materialRef.current = m.material as THREE.ShaderMaterial
         }
       }}
+      args={[undefined, undefined, lanterns.length]}
       geometry={instGeom}
       material={material}
+      onClick={(e) => {
+        e.stopPropagation()
+        if (typeof e.instanceId === 'number') {
+          const lantern = lanterns[e.instanceId]
+          if (lantern) onLanternClick(lantern)
+        }
+      }}
+      onPointerOver={(e) => {
+        e.stopPropagation()
+        document.body.style.cursor = 'pointer'
+        if (typeof e.instanceId === 'number') {
+          hoveredIndexRef.current = e.instanceId
+        }
+      }}
+      onPointerOut={() => {
+        document.body.style.cursor = 'auto'
+        hoveredIndexRef.current = null
+      }}
     />
   )
 }
 
-export function LanternScene() {
+export function LanternScene({
+  lanterns,
+  onLanternClick,
+}: {
+  lanterns: Lantern[]
+  onLanternClick: (lantern: Lantern) => void
+}) {
   return (
     <>
       <color
@@ -165,7 +228,10 @@ export function LanternScene() {
         args={[0x000000]}
       />
       <ambientLight intensity={0.5} />
-      <Lanterns />
+      <Lanterns
+        lanterns={lanterns}
+        onLanternClick={onLanternClick}
+      />
       <OrbitControls maxDistance={150} />
     </>
   )
