@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "contentlayer2 build && next dev",
     "build": "contentlayer2 build && next build",
-    "vercel-build": "contentlayer2 build && next build && drizzle-kit migrate",
+    "vercel-build": "contentlayer2 build && next build && drizzle-kit migrate && bun db:seed",
     "start": "contentlayer2 build && next start",
     "preview": "contentlayer2 build && next build && next start",
     "dev:content": "contentlayer2 dev",
@@ -13,6 +13,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
+    "db:seed": "bun scripts/mock-lanterns.ts",
     "check": "biome check .",
     "typecheck": "tsc --noEmit",
     "check:unsafe": "biome check --write --unsafe .",

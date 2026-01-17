@@ -4,10 +4,12 @@ import { env } from '@/env'
 
 import * as authSchema from './schema/auth'
 import * as bonjourSchema from './schema/bonjour'
+import * as lanternSchema from './schema/lantern'
 
 const schema = {
   ...authSchema,
   ...bonjourSchema,
+  ...lanternSchema,
 }
 
 /**
