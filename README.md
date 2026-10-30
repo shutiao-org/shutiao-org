@@ -68,10 +68,6 @@
 	<tbody>
 </table>
 
-## 🍭 Community
-
-- [Telegram](https://t.me/guoqisun)
-
 ## ⭐️ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=shutiao-org/shutiao-org&type=Date)](https://github.com/shutiao-org/shutiao-org)
