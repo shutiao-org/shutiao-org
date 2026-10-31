@@ -3,7 +3,6 @@
  * for Docker builds.
  */
 import './src/env.js'
-import { withContentlayer } from 'next-contentlayer2'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const withNextIntl = createNextIntlPlugin()
@@ -11,6 +10,10 @@ const withNextIntl = createNextIntlPlugin()
 /** @type {import("next").NextConfig} */
 const config = {
   output: 'standalone',
+  // qino reads content files at request time
+  outputFileTracingIncludes: {
+    '/**': ['./content/**/*'],
+  },
   turbopack: {
     rules: {
       '*.svg': {
@@ -34,4 +37,4 @@ const config = {
   },
 }
 
-export default withNextIntl(withContentlayer(config))
+export default withNextIntl(config)
