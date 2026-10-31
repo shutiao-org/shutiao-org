@@ -1,17 +1,12 @@
-import { allBlogs } from 'contentlayer/generated'
-import { compareDesc, format, parseISO } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
+import { blogCollection } from 'qino/collections/blogs'
 
-const posts = allBlogs.sort((a, b) =>
-  compareDesc(new Date(a.date), new Date(b.date)),
-)
-
-console.log(posts.length)
-
-export default function Home() {
-  const t = useTranslations('blogs')
+export default async function Home() {
+  const t = await getTranslations('blogs')
+  const posts = await blogCollection.getEntries()
 
   return (
     <div className='mx-auto mb-5 max-w-[85rem] px-4 py-10 sm:px-6 lg:mb-10 lg:px-8 lg:py-14'>
@@ -27,7 +22,7 @@ export default function Home() {
           <Link
             key={idx}
             className='group flex h-full flex-col rounded-xl border border-gray-200 bg-white p-5 transition duration-300 hover:border-transparent hover:shadow-lg focus:border-transparent focus:shadow-lg focus:outline-none dark:border-white/10 dark:bg-white/5 dark:focus:shadow-white/10 dark:hover:shadow-white/10'
-            href={`/blogs/${post.slug}`}
+            href={`/blogs/${post._meta.slug}`}
             data-umami-event={`homepage-blog-${post.title}`}
           >
             <div className='aspect-[16/9] overflow-hidden rounded-xl'>

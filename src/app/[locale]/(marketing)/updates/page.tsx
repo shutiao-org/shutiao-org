@@ -1,8 +1,11 @@
-import { allUpdates } from 'contentlayer/generated'
-import { compareDesc, format, parseISO } from 'date-fns'
+import { format, parseISO } from 'date-fns'
+import { notFound } from 'next/navigation'
+import { hasLocale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import { updateCollections } from 'qino/collections/updates'
 import { Mdx } from '@/components/common/mdx'
 import { Timeline } from '@/components/ui/timeline'
+import { routing } from '@/i18n/routing'
 
 export default async function UpdatesPage({
   params,
@@ -10,17 +13,19 @@ export default async function UpdatesPage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const t = await getTranslations('updates')
 
-  const updates = allUpdates
-    .filter((update) => update.locale === locale)
-    .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+  if (!hasLocale(routing.locales, locale)) {
+    notFound()
+  }
+
+  const t = await getTranslations('updates')
+  const updates = await updateCollections[locale].getEntries()
 
   const data = updates.map((update) => ({
     title: format(parseISO(update.date), 'yyyy-MM-dd'),
     content: (
       <div className='prose dark:prose-invert max-w-none'>
-        <Mdx code={update.body.code} />
+        <Mdx source={update.markdown} />
       </div>
     ),
   }))
