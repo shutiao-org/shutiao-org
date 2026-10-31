@@ -5,8 +5,7 @@
     "src/i18n/**",
     "src/trpc/**",
     "drizzle.config.ts",
-    "scripts/drizzle-migrate.ts",
-    "contentlayer.config.ts "
+    "scripts/drizzle-migrate.ts"
   ],
   "ignoreDependencies": [
     "@commitlint/cli",
