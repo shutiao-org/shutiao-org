@@ -47,3 +47,5 @@ yarn-error.log*
 
 # idea files
 .idea
+# qino
+qino/_generated/
