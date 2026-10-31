@@ -1,6 +1,6 @@
-import { allPages } from 'contentlayer/generated'
 import { eq, sql } from 'drizzle-orm'
 import { notFound } from 'next/navigation'
+import { pageCollection } from 'qino/collections/pages'
 import { Mdx } from '@/components/common/mdx'
 import { BonjourStudio } from '@/components/dashboard/bonjour/studio'
 import { db } from '@/server/db'
@@ -28,15 +28,18 @@ export default async function CatchAllPage({
     )
   }
 
-  const page = allPages.find((page) => page.slug === rest)
+  const slugs = await pageCollection.getAllSlugs()
+  const slug = slugs.find((slug) => slug === rest)
 
-  if (!page) {
+  if (!slug) {
     notFound()
   }
 
+  const page = await pageCollection.getEntry(slug)
+
   return (
     <article className='prose dark:prose-invert mx-auto px-4 py-8'>
-      <Mdx code={page?.body.code} />
+      <Mdx source={page.markdown} />
     </article>
   )
 }

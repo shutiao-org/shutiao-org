@@ -1,8 +1,11 @@
-import { allEvents } from 'contentlayer/generated'
-import { compareDesc, format, parseISO } from 'date-fns'
+import { format, parseISO } from 'date-fns'
+import { notFound } from 'next/navigation'
+import { hasLocale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import { eventCollections } from 'qino/collections/events'
 import { Mdx } from '@/components/common/mdx'
 import { EventsTabs } from '@/components/events/tabs'
+import { routing } from '@/i18n/routing'
 
 export default async function EventPage({
   params,
@@ -10,11 +13,13 @@ export default async function EventPage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const t = await getTranslations('events')
 
-  const events = allEvents
-    .filter((event) => event.locale === locale)
-    .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+  if (!hasLocale(routing.locales, locale)) {
+    notFound()
+  }
+
+  const t = await getTranslations('events')
+  const events = await eventCollections[locale].getEntries()
 
   const now = new Date()
   const upcomingEvents = events.filter((event) => new Date(event.date) >= now)
@@ -24,7 +29,7 @@ export default async function EventPage({
     title: format(parseISO(event.date), 'yyyy-MM-dd'),
     content: (
       <div className='prose dark:prose-invert max-w-none'>
-        <Mdx code={event.body.code} />
+        <Mdx source={event.markdown} />
       </div>
     ),
   }))
@@ -33,7 +38,7 @@ export default async function EventPage({
     title: format(parseISO(event.date), 'yyyy-MM-dd'),
     content: (
       <div className='prose dark:prose-invert max-w-none'>
-        <Mdx code={event.body.code} />
+        <Mdx source={event.markdown} />
       </div>
     ),
   }))

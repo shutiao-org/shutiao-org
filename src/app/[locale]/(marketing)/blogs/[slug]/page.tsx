@@ -1,10 +1,10 @@
-import { allBlogs } from 'contentlayer/generated'
 import { format, parseISO } from 'date-fns'
 import { enUS, zhCN } from 'date-fns/locale'
 import { ArrowLeft } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
+import { blogCollection } from 'qino/collections/blogs'
 import { Mdx } from '@/components/common/mdx'
 
 export default async function BlogPage({
@@ -15,11 +15,14 @@ export default async function BlogPage({
   const { slug, locale } = await params
   const t = await getTranslations('blogs')
 
-  const post = allBlogs.find((post) => post.slug === slug)
+  const slugs = await blogCollection.getAllSlugs()
+  const blogSlug = slugs.find((s) => s === slug)
 
-  if (!post) {
+  if (!blogSlug) {
     return <div>{t('not-found')}</div>
   }
+
+  const post = await blogCollection.getEntry(blogSlug)
 
   const dateLocale = locale === 'zh' ? zhCN : enUS
 
@@ -60,7 +63,7 @@ export default async function BlogPage({
       </div>
 
       <div className='prose prose-neutral dark:prose-invert max-w-none'>
-        <Mdx code={post.body.code} />
+        <Mdx source={post.markdown} />
       </div>
     </article>
   )

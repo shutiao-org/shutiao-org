@@ -1,13 +1,9 @@
-'use client'
-
-import { useMDXComponent } from 'next-contentlayer2/hooks'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 interface MdxProps {
-  code: string
+  source: string
 }
 
-export const Mdx = ({ code }: MdxProps) => {
-  const MDXComponent = useMDXComponent(code)
-
-  return <MDXComponent />
+export const Mdx = ({ source }: MdxProps) => {
+  return <MDXRemote source={source} />
 }
